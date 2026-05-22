@@ -136,14 +136,17 @@
     <!-- Main Content Container -->
     <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-4 sm:px-6 mt-4 sm:mt-8">
         
-        <!-- Info Tooltip Tiup Lilin -->
-        <div id="blow-tooltip" class="absolute z-30 top-0 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-500 pointer-events-none whitespace-nowrap">
-            skrng klik kuenya buat tiup lilin hehe
-        </div>
-
         <!-- Animated 3D Parallax Character Container -->
-        <div id="parallax-wrapper" class="w-full flex justify-center mb-4 sm:mb-6 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group mt-8">
+        <div id="parallax-wrapper" class="relative w-full flex justify-center mb-4 sm:mb-6 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group mt-8">
             
+            <!-- Wrapper Posisi Center (Dipisah agar transform tidak bentrok dengan bounce) -->
+            <div class="absolute z-30 -top-12 sm:-top-14 left-1/2 transform -translate-x-1/2 pointer-events-none">
+                <!-- Inner Animasi Bounce -->
+                <div id="blow-tooltip" class="bg-white/90 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-500 whitespace-nowrap">
+                    skrng klik kuenya buat tiup lilin hehe
+                </div>
+            </div>
+
             <div class="animate-float" id="character-container">
                 <!-- SVG Portrait: Highly detailed, gradient-based (Made Fluid) -->
                 <svg viewBox="0 0 260 260" class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[420px] h-auto transform group-hover:scale-105 transition-transform duration-500" xmlns="http://www.w3.org/2000/svg">
