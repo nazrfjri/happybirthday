@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Puspi! 🎂</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importing Fluid & Cute Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Font Assignments */
+        .font-pacifico { font-family: 'Pacifico', cursive; }
+        .font-quicksand { font-family: 'Quicksand', sans-serif; }
+
+        /* Flame Flickering Animation */
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
+            25% { transform: scale(1.1) rotate(1deg); opacity: 1; }
+            50% { transform: scale(0.95) rotate(-2deg); opacity: 0.8; }
+            75% { transform: scale(1.05) rotate(2deg); opacity: 0.95; }
+        }
+        .animate-flicker {
+            animation: flicker 0.6s infinite alternate;
+            transform-origin: bottom center;
+        }
+
+        /* Floating Animation for the Character */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Blinking Eyes Animation */
+        @keyframes blink {
+            0%, 96%, 98%, 100% { transform: scaleY(1); }
+            97%, 99% { transform: scaleY(0.1); }
+        }
+        .eye {
+            transform-origin: center;
+            animation: blink 4s infinite;
+        }
+
+        /* Sparkle Animation */
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+        .sparkle-shape {
+            animation: sparkle 1.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        /* Typing Cursor Blink */
+        .cursor-blink {
+            border-right: 3px solid #ec4899;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ec4899; }
+        }
+
+        /* Confetti Falling */
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+        .confetti {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            background-color: #fca5a5;
+            border-radius: 50%;
+            animation: fall linear forwards;
+        }
+
+        /* Magic Intro Overlay */
+        #intro-overlay {
+            transition: opacity 1s ease-in-out, visibility 1s;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-50 to-pink-200 min-h-screen flex flex-col items-center justify-center overflow-hidden relative text-gray-800">
+
+    <!-- Confetti Container -->
+    <div id="confetti-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 flex flex-col items-center w-full max-w-2xl px-6">
+        
+        <!-- Cute Animated Character (Gemini Mascot & Cake) -->
+        <div class="animate-float mb-8 cursor-pointer" id="character-container">
+            <svg viewBox="0 0 240 220" class="w-72 h-72 md:w-96 md:h-96 drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
+                <!-- Gemini Constellation / Symbol Background -->
+                <text x="120" y="45" font-family="Arial, sans-serif" font-size="50" text-anchor="middle" fill="#FBCFE8" opacity="0.7">♊</text>
+
+                <!-- Sparkles (Hidden initially, shown when lit) -->
+                <g id="sparkles" class="opacity-0 transition-opacity duration-500">
+                    <path class="sparkle-shape" d="M 40 40 L 45 30 L 50 40 L 60 45 L 50 50 L 45 60 L 40 50 L 30 45 Z" fill="#FDE047" style="animation-delay: 0s;"/>
+                    <path class="sparkle-shape" d="M 200 60 L 203 50 L 206 60 L 216 63 L 206 66 L 203 76 L 200 66 L 190 63 Z" fill="#FDE047" style="animation-delay: 0.5s;"/>
+                </g>
+
+                <!-- Twin 1 (Left - Blue/Purple) -->
+                <g class="animate-float" style="animation-delay: 0s;">
+                    <!-- Body -->
+                    <circle cx="75" cy="120" r="38" fill="#A78BFA"/>
+                    <!-- Celestial Ears/Antennae -->
+                    <circle cx="45" cy="95" r="8" fill="#8B5CF6"/>
+                    <circle cx="105" cy="95" r="8" fill="#8B5CF6"/>
+                    <!-- Eyes -->
+                    <g class="eye">
+                        <circle cx="62" cy="115" r="4.5" fill="#4C1D95"/>
+                        <circle cx="88" cy="115" r="4.5" fill="#4C1D95"/>
+                        <!-- Sparkle -->
+                        <circle cx="60.5" cy="113.5" r="1.5" fill="#FFFFFF"/>
+                        <circle cx="86.5" cy="113.5" r="1.5" fill="#FFFFFF"/>
+                    </g>
+                    <!-- Blush -->
+                    <ellipse cx="52" cy="123" rx="6" ry="3.5" fill="#F472B6" opacity="0.7"/>
+                    <ellipse cx="98" cy="123" rx="6" ry="3.5" fill="#F472B6" opacity="0.7"/>
+                    <!-- Smile -->
+                    <path d="M 70 124 Q 75 130 80 124" stroke="#4C1D95" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </g>
+
+                <!-- Twin 2 (Right - Pink) -->
+                <g class="animate-float" style="animation-delay: 0.5s;">
+                    <!-- Body -->
+                    <circle cx="165" cy="120" r="38" fill="#F472B6"/>
+                    <!-- Celestial Ears/Antennae -->
+                    <circle cx="135" cy="95" r="8" fill="#DB2777"/>
+                    <circle cx="195" cy="95" r="8" fill="#DB2777"/>
+                    <!-- Eyes (Winking) -->
+                    <g class="eye">
+                        <circle cx="152" cy="115" r="4.5" fill="#831843"/>
+                        <!-- Sparkle -->
+                        <circle cx="150.5" cy="113.5" r="1.5" fill="#FFFFFF"/>
+                        <!-- Wink Right Eye -->
+                        <path d="M 174 113 Q 178 110 182 113" stroke="#831843" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    </g>
+                    <!-- Blush -->
+                    <ellipse cx="142" cy="123" rx="6" ry="3.5" fill="#FDA4AF" opacity="0.8"/>
+                    <ellipse cx="188" cy="123" rx="6" ry="3.5" fill="#FDA4AF" opacity="0.8"/>
+                    <!-- Smile -->
+                    <path d="M 160 124 Q 165 130 170 124" stroke="#831843" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </g>
+
+                <!-- Cake Plate -->
+                <ellipse cx="120" cy="195" rx="75" ry="12" fill="#E5E7EB"/>
+
+                <!-- Cake Base -->
+                <rect x="70" y="145" width="100" height="45" rx="6" fill="#FFC2D1"/>
+                
+                <!-- Cake Icing -->
+                <path d="M 65 145 Q 80 160 90 145 Q 105 160 120 145 Q 135 160 150 145 Q 160 160 175 145 Z" fill="#FFF0F3"/>
+                
+                <!-- 21 Text on Cake -->
+                <text x="120" y="178" font-family="Quicksand, sans-serif" font-weight="700" font-size="28" fill="#FB7185" text-anchor="middle" style="text-shadow: 1px 1px 2px rgba(255,255,255,0.5);">21</text>
+
+                <!-- Candle Body -->
+                <rect x="115" y="115" width="10" height="30" rx="2" fill="#A2D2FF"/>
+                <line x1="115" y1="125" x2="125" y2="120" stroke="#FFFFFF" stroke-width="2"/>
+                <line x1="115" y1="135" x2="125" y2="130" stroke="#FFFFFF" stroke-width="2"/>
+                
+                <!-- Candle Wick -->
+                <line x1="120" y1="115" x2="120" y2="110" stroke="#5E503F" stroke-width="2"/>
+
+                <!-- Flame (Animated & controlled by JS) -->
+                <path id="flame" d="M 120 85 Q 128 105 120 110 Q 112 105 120 85 Z" fill="#FFB703" class="opacity-0 transition-opacity duration-700" style="filter: drop-shadow(0 0 10px #FFB703);"/>
+            </svg>
+        </div>
+
+        <!-- Fluid Text Container -->
+        <div class="text-center w-full min-h-[160px]">
+            <!-- Name / Main Greeting -->
+            <h1 class="font-pacifico text-4xl md:text-5xl lg:text-6xl text-pink-600 drop-shadow-md mb-4 tracking-wide leading-tight" style="min-height: 4rem;">
+                <span id="text-bday"></span><span id="cursor-bday" class="cursor-blink inline-block w-[3px] h-[1em] align-middle bg-transparent ml-1"></span>
+            </h1>
+            
+            <!-- Wishes / Subtext -->
+            <p class="font-quicksand font-bold text-xl md:text-2xl text-purple-700 drop-shadow-sm leading-relaxed" style="min-height: 4rem;">
+                <span id="text-wish"></span><span id="cursor-wish" class="cursor-blink inline-block w-[2px] h-[1em] align-middle bg-transparent ml-1 hidden"></span>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Restart / Replay Button -->
+    <button id="restart-btn" class="fixed bottom-6 right-6 p-4 bg-white rounded-full shadow-xl text-pink-500 hover:bg-pink-50 hover:text-pink-600 hover:scale-110 transition-all duration-300 z-50 group focus:outline-none" aria-label="Ulangi Animasi">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+    </button>
+
+    <!-- Initial Overlay Prompt -->
+    <div id="intro-overlay" class="absolute inset-0 bg-pink-100/80 backdrop-blur-sm z-40 flex items-center justify-center cursor-pointer">
+        <div class="bg-white p-6 rounded-3xl shadow-2xl animate-bounce text-center">
+            <p class="font-quicksand font-bold text-pink-500 text-xl">Klik maskot kembar Gemini untuk menyalakan lilin! ✨</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const textBdayEl = document.getElementById('text-bday');
+        const textWishEl = document.getElementById('text-wish');
+        const cursorBday = document.getElementById('cursor-bday');
+        const cursorWish = document.getElementById('cursor-wish');
+        const flame = document.getElementById('flame');
+        const sparkles = document.getElementById('sparkles');
+        const characterBtn = document.getElementById('character-container');
+        const restartBtn = document.getElementById('restart-btn');
+        const introOverlay = document.getElementById('intro-overlay');
+        const confettiContainer = document.getElementById('confetti-container');
+
+        // Texts to type
+        const bdayText = "happy 21st birthday puspi!";
+        const wishText = "wish you all the best. be happy, always. 💖";
+
+        // State control
+        let isPlaying = false;
+        let currentSequence = 0; // Used to abort previous typing sequences if restarted
+
+        // Helper function for delays
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        // Create random confetti
+        function createConfetti() {
+            const colors = ['#fca5a5', '#f9a8d4', '#c084fc', '#fef08a', '#93c5fd'];
+            const amount = 50;
+            
+            confettiContainer.innerHTML = ''; // Clear old confetti
+
+            for(let i=0; i<amount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Randomize properties
+                const left = Math.random() * 100;
+                const animDuration = Math.random() * 3 + 2;
+                const delay = Math.random() * 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = `${left}vw`;
+                confetti.style.backgroundColor = color;
+                confetti.style.animationDuration = `${animDuration}s`;
+                confetti.style.animationDelay = `${delay}s`;
+                
+                // Randomize shape (circles or rectangles)
+                if(Math.random() > 0.5) confetti.style.borderRadius = '0';
+
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Typewriter function
+        async function typeWriter(text, element, speed = 100, sequenceId) {
+            element.textContent = "";
+            for (let i = 0; i < text.length; i++) {
+                if (currentSequence !== sequenceId) return; // Abort if sequence changed
+                element.textContent += text.charAt(i);
+                await sleep(speed);
+            }
+        }
+
+        // Backspace function
+        async function backspace(element, speed = 50, sequenceId) {
+            let text = element.textContent;
+            while (text.length > 0) {
+                if (currentSequence !== sequenceId) return; // Abort if sequence changed
+                text = text.slice(0, -1);
+                element.textContent = text;
+                await sleep(speed);
+            }
+        }
+
+        // Main Animation Loop
+        async function startAnimationLoop(sequenceId) {
+            while (currentSequence === sequenceId) {
+                // Type Title
+                cursorBday.classList.remove('hidden');
+                cursorWish.classList.add('hidden');
+                await typeWriter(bdayText, textBdayEl, 120, sequenceId);
+                
+                if (currentSequence !== sequenceId) break;
+                await sleep(800);
+
+                // Switch cursor to paragraph
+                cursorBday.classList.add('hidden');
+                cursorWish.classList.remove('hidden');
+
+                // Type Wishes
+                await typeWriter(wishText, textWishEl, 80, sequenceId);
+                
+                if (currentSequence !== sequenceId) break;
+                
+                // Let the complete message stay for a while
+                await sleep(4000);
+
+                // Backspace Wishes
+                await backspace(textWishEl, 40, sequenceId);
+                
+                if (currentSequence !== sequenceId) break;
+
+                // Switch cursor to title
+                cursorWish.classList.add('hidden');
+                cursorBday.classList.remove('hidden');
+
+                // Backspace Title
+                await backspace(textBdayEl, 60, sequenceId);
+                
+                if (currentSequence !== sequenceId) break;
+                await sleep(500);
+            }
+        }
+
+        // Trigger Candle & Start Event
+        function lightCandleAndStart() {
+            if (isPlaying) return;
+            isPlaying = true;
+
+            // Hide overlay
+            introOverlay.style.opacity = '0';
+            setTimeout(() => introOverlay.style.visibility = 'hidden', 1000);
+
+            // Light the candle
+            flame.classList.remove('opacity-0');
+            flame.classList.add('animate-flicker');
+            sparkles.classList.remove('opacity-0');
+
+            // Burst confetti
+            createConfetti();
+
+            // Start Typing Loop
+            currentSequence++;
+            startAnimationLoop(currentSequence);
+        }
+
+        // Reset Event
+        function resetAnimation() {
+            // Stop current loops
+            currentSequence++;
+            isPlaying = false;
+            
+            // Turn off candle
+            flame.classList.add('opacity-0');
+            flame.classList.remove('animate-flicker');
+            sparkles.classList.add('opacity-0');
+
+            // Clear Texts & Cursors
+            textBdayEl.textContent = "";
+            textWishEl.textContent = "";
+            cursorBday.classList.remove('hidden');
+            cursorWish.classList.add('hidden');
+
+            // Clear Confetti
+            confettiContainer.innerHTML = '';
+
+            // Show Overlay again
+            introOverlay.style.visibility = 'visible';
+            introOverlay.style.opacity = '1';
+        }
+
+        // Event Listeners
+        characterContainer = document.getElementById('character-container');
+        characterContainer.addEventListener('click', lightCandleAndStart);
+        introOverlay.addEventListener('click', lightCandleAndStart);
+        restartBtn.addEventListener('click', resetAnimation);
+
+    </script>
+</body>
+</html>
