@@ -134,19 +134,19 @@
     <canvas id="confetti-canvas"></canvas>
 
     <!-- Main Content Container -->
-    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-4 sm:px-6 mt-8">
+    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-4 sm:px-6 mt-4 sm:mt-8">
         
         <!-- Info Tooltip Tiup Lilin -->
-        <div id="blow-tooltip" class="absolute z-30 top-0 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-5 py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-500 pointer-events-none whitespace-nowrap">
+        <div id="blow-tooltip" class="absolute z-30 top-0 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-500 pointer-events-none whitespace-nowrap">
             skrng klik kuenya buat tiup lilin hehe
         </div>
 
         <!-- Animated 3D Parallax Character Container -->
-        <div id="parallax-wrapper" class="w-full flex justify-center mb-6 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group mt-8">
+        <div id="parallax-wrapper" class="w-full flex justify-center mb-4 sm:mb-6 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group mt-8">
             
             <div class="animate-float" id="character-container">
-                <!-- SVG Portrait: Highly detailed, gradient-based -->
-                <svg viewBox="0 0 260 260" class="w-80 h-80 md:w-[420px] md:h-[420px] transform group-hover:scale-105 transition-transform duration-500" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG Portrait: Highly detailed, gradient-based (Made Fluid) -->
+                <svg viewBox="0 0 260 260" class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[420px] h-auto transform group-hover:scale-105 transition-transform duration-500" xmlns="http://www.w3.org/2000/svg">
                     
                     <defs>
                         <!-- Skin Gradient (Warm, realistic glow) -->
@@ -273,18 +273,22 @@
                             <line x1="90" y1="95" x2="105" y2="110" stroke="white" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
                             <line x1="145" y1="95" x2="160" y2="110" stroke="white" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
 
-                            <!-- The Eyes (Deep brown, lively) -->
+                            <!-- The Eyes (Deep brown, lively) with Eye Tracking Groups -->
                             <!-- Left Eye -->
-                            <circle cx="103" cy="108" r="6" fill="#3E2723"/>
-                            <!-- Cute Catchlights (Sparkle in eye) -->
-                            <circle cx="101" cy="106" r="2.5" fill="#FFFFFF"/>
-                            <circle cx="106" cy="110" r="1" fill="#FFFFFF"/>
+                            <g id="left-eye-pupil" style="transform-origin: 103px 108px; transition: transform 0.1s ease-out;">
+                                <circle cx="103" cy="108" r="6" fill="#3E2723"/>
+                                <!-- Cute Catchlights (Sparkle in eye) -->
+                                <circle cx="101" cy="106" r="2.5" fill="#FFFFFF"/>
+                                <circle cx="106" cy="110" r="1" fill="#FFFFFF"/>
+                            </g>
                             
                             <!-- Right Eye -->
-                            <circle cx="157" cy="108" r="6" fill="#3E2723"/>
-                            <!-- Cute Catchlights -->
-                            <circle cx="155" cy="106" r="2.5" fill="#FFFFFF"/>
-                            <circle cx="160" cy="110" r="1" fill="#FFFFFF"/>
+                            <g id="right-eye-pupil" style="transform-origin: 157px 108px; transition: transform 0.1s ease-out;">
+                                <circle cx="157" cy="108" r="6" fill="#3E2723"/>
+                                <!-- Cute Catchlights -->
+                                <circle cx="155" cy="106" r="2.5" fill="#FFFFFF"/>
+                                <circle cx="160" cy="110" r="1" fill="#FFFFFF"/>
+                            </g>
 
                             <!-- Eyelashes -->
                             <path d="M 96 102 Q 93 102 91 105" fill="none" stroke="#3E2723" stroke-width="1.5" stroke-linecap="round"/>
@@ -347,32 +351,32 @@
         </div>
 
         <!-- Fluid Text Container -->
-        <div class="text-center w-full min-h-[180px] z-20 flex flex-col items-center">
+        <div class="text-center w-full min-h-[220px] sm:min-h-[180px] z-20 flex flex-col items-center px-2">
             <!-- Name / Main Greeting -->
-            <h1 class="font-title text-5xl md:text-6xl lg:text-7xl text-pink-500 mb-4 tracking-wide leading-tight text-glow transition-all duration-300" style="min-height: 4.5rem;">
-                <span id="text-bday"></span><span id="cursor-bday" class="cursor-blink inline-block w-[4px] h-[0.9em] align-middle bg-transparent ml-1"></span>
+            <h1 class="font-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-pink-500 mb-2 sm:mb-4 tracking-wide leading-tight text-glow transition-all duration-300" style="min-height: 4.5rem;">
+                <span id="text-bday"></span><span id="cursor-bday" class="cursor-blink inline-block w-[3px] sm:w-[4px] h-[0.9em] align-middle bg-transparent ml-1"></span>
             </h1>
             
             <!-- Wishes / Subtext -->
-            <p class="font-quicksand font-bold text-xl md:text-2xl lg:text-3xl text-purple-700 drop-shadow-sm leading-relaxed max-w-xl mx-auto" style="min-height: 4rem;">
-                <span id="text-wish"></span><span id="cursor-wish" class="cursor-blink inline-block w-[3px] h-[0.9em] align-middle bg-transparent ml-1 hidden"></span>
+            <p class="font-quicksand font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-purple-700 drop-shadow-sm leading-relaxed max-w-xl mx-auto" style="min-height: 4rem;">
+                <span id="text-wish"></span><span id="cursor-wish" class="cursor-blink inline-block w-[2px] sm:w-[3px] h-[0.9em] align-middle bg-transparent ml-1 hidden"></span>
             </p>
         </div>
 
     </div>
 
-    <!-- Restart / Replay Button (Hidden initially, shown after typing) -->
-    <button id="restart-btn" class="fixed bottom-6 right-6 p-4 bg-white/90 backdrop-blur-md rounded-full shadow-xl text-pink-500 hover:bg-pink-100 hover:text-pink-600 hover:scale-110 transition-all duration-300 z-50 group focus:outline-none opacity-0 pointer-events-none translate-y-4" aria-label="Ulangi Animasi">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 transform group-hover:-rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+    <!-- Restart / Replay Button -->
+    <button id="restart-btn" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 p-3 sm:p-4 bg-white/90 backdrop-blur-md rounded-full shadow-xl text-pink-500 hover:bg-pink-100 hover:text-pink-600 hover:scale-110 transition-all duration-300 z-50 group focus:outline-none opacity-0 pointer-events-none translate-y-4" aria-label="Ulangi Animasi">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7 transform group-hover:-rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
     </button>
 
     <!-- Initial Glassmorphism Overlay Prompt -->
     <div id="intro-overlay" class="absolute inset-0 bg-white/30 backdrop-blur-md z-40 flex items-center justify-center cursor-pointer">
-        <div class="bg-white/80 backdrop-blur-lg border border-white/50 p-6 md:p-8 rounded-3xl shadow-2xl animate-breathe text-center max-w-sm mx-4 transform transition-transform hover:scale-105">
-            <h2 class="font-title text-2xl text-pink-600 mb-2">klik yaa!</h2>
-            <!-- <p class="font-quicksand font-bold text-gray-600 text-lg">Sentuh untuk membuka kejutan spesialmu! ✨</p> -->
+        <div class="bg-white/80 backdrop-blur-lg border border-white/50 p-5 sm:p-8 rounded-3xl shadow-2xl animate-breathe text-center w-[90%] max-w-sm transform transition-transform hover:scale-105">
+            <h2 class="font-title text-xl sm:text-2xl text-pink-600 mb-2">klik yaa!</h2>
+            <!-- <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">Sentuh untuk membuka kejutan spesialmu! ✨</p> -->
         </div>
     </div>
 
@@ -392,6 +396,8 @@
         const blowTooltip = document.getElementById('blow-tooltip');
         const restartBtn = document.getElementById('restart-btn');
         const canvas = document.getElementById('confetti-canvas');
+        const leftEye = document.getElementById('left-eye-pupil');
+        const rightEye = document.getElementById('right-eye-pupil');
         const ctx = canvas.getContext('2d');
 
         // ================= STATE & CONFIG =================
@@ -402,14 +408,28 @@
         let currentSequence = 0; 
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-        // ================= PARALLAX EFFECT =================
-        // Make the avatar slightly look towards the mouse
-        document.addEventListener('mousemove', (e) => {
+        // ================= PARALLAX & EYE TRACKING EFFECT =================
+        // Make the avatar and eyes look towards the mouse/touch
+        function handlePointerMove(clientX, clientY) {
             if(!isPlaying) return;
-            const x = (e.clientX - window.innerWidth / 2) / 40;
-            const y = (e.clientY - window.innerHeight / 2) / 40;
-            parallaxWrapper.style.transform = `translate(${x}px, ${y}px)`;
-        });
+            const x = (clientX - window.innerWidth / 2);
+            const y = (clientY - window.innerHeight / 2);
+            
+            // Dampen the parallax on smaller screens (mobile) to prevent moving too far
+            const dampen = window.innerWidth < 768 ? 80 : 40;
+            
+            // 3D Parallax body
+            parallaxWrapper.style.transform = `translate(${x / dampen}px, ${y / dampen}px)`;
+
+            // Eye tracking (subtle movement inside the glasses)
+            const eyeX = (x / window.innerWidth) * 4.5;
+            const eyeY = (y / window.innerHeight) * 4.5;
+            leftEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
+            rightEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
+        }
+
+        document.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+        document.addEventListener('touchmove', (e) => handlePointerMove(e.touches[0].clientX, e.touches[0].clientY));
 
         // ================= BACKGROUND FIREFLIES =================
         function createFireflies() {
@@ -632,9 +652,11 @@
             smoke2.classList.remove('animate-smoke');
             sparkles.classList.add('opacity-0');
 
-            // Reset Senyum (Kembali ke senyum tipis awal)
+            // Reset Senyum & Parallax & Mata
             smilePath.setAttribute('d', 'M 118 142 Q 130 150 142 142');
             parallaxWrapper.style.transform = `translate(0px, 0px)`;
+            leftEye.style.transform = `translate(0px, 0px)`;
+            rightEye.style.transform = `translate(0px, 0px)`;
 
             // Reset Texts & Button
             textBdayEl.textContent = "";
