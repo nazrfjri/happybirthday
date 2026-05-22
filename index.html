@@ -52,10 +52,13 @@
             50% { transform: translateY(-20px) rotate(var(--r-end)); }
         }
         .animate-float-bg {
-            animation: float-bg 8s ease-in-out infinite;
+            animation: float-bg 9s ease-in-out infinite;
         }
         .animate-float-bg-delayed {
-            animation: float-bg 11s ease-in-out infinite 2s;
+            animation: float-bg 12s ease-in-out infinite 2.5s;
+        }
+        .animate-float-bg-slow {
+            animation: float-bg 14s ease-in-out infinite 1s;
         }
 
         @keyframes blink {
@@ -121,7 +124,7 @@
         /* Dynamic Island Audio Visualizer Animation */
         .visualizer-bar {
             width: 3px;
-            background-color: #f472b6; /* pink-400 */
+            background-color: #f472b6;
             border-radius: 2px;
             height: 4px;
             transition: height 0.2s ease;
@@ -156,57 +159,95 @@
 <body class="min-h-screen flex flex-col items-center justify-center overflow-hidden relative text-gray-800">
 
     <!-- Background Music -->
-    <audio id="bg-music" src="music.mpeg" preload="auto" loop></audio>
+    <audio id="bg-music" src="music-2.mpeg" preload="auto" loop></audio>
 
-    <!-- K3 / EHS Aesthetic Background Decorations -->
-    <div id="ehs-decorations" class="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
-        <!-- 1. Hard Hat (Safety) - Top Left -->
-        <div class="absolute top-[10%] left-[8%] md:left-[15%] text-pink-300 animate-float-bg drop-shadow-sm" style="--r-start: -10deg; --r-end: 10deg;">
-            <svg class="w-12 h-12 md:w-16 md:h-16 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <!-- K3 / EHS Aesthetic Background Decorations (Diperbanyak, Diperbesar, Lebih Terlihat) -->
+    <div id="ehs-decorations" class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        
+        <!-- === KIRI === -->
+        
+        <!-- 1. Hard Hat (Safety) - Kiri Atas -->
+        <div class="absolute top-[8%] left-[6%] md:left-[12%] text-yellow-500 opacity-60 animate-float-bg drop-shadow-md" style="--r-start: -10deg; --r-end: 10deg;">
+            <svg class="w-16 h-16 md:w-24 md:h-24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                 <path d="M4 15s1-10 8-10 8 10 8 10" />
                 <path d="M2 18h20" />
                 <path d="M12 5v5" />
             </svg>
         </div>
-        
-        <!-- 2. Leaf (Environment) - Top Right -->
-        <div class="absolute top-[15%] right-[10%] md:right-[20%] text-teal-300 animate-float-bg-delayed drop-shadow-sm" style="--r-start: 15deg; --r-end: -5deg;">
-            <svg class="w-10 h-10 md:w-14 md:h-14 opacity-50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M11 20A7 7 0 0 1 4 13C4 8.5 8 4 12 4s8 4.5 8 9a7 7 0 0 1-7 7H11z" />
-                <path d="M11 20v-5" />
+
+        <!-- 2. Wind/Air Quality (Environment) - Kiri Tengah Atas -->
+        <div class="absolute top-[28%] left-[16%] md:left-[22%] text-sky-400 opacity-50 animate-float-bg-delayed drop-shadow-md" style="--r-start: 5deg; --r-end: -15deg;">
+            <svg class="w-12 h-12 md:w-20 md:h-20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
             </svg>
         </div>
 
-        <!-- 3. Clipboard Checklist (EHS Inspection) - Center Left -->
-        <div class="absolute top-[45%] left-[5%] md:left-[10%] text-purple-300 animate-float-bg-delayed drop-shadow-sm" style="--r-start: -15deg; --r-end: 5deg;">
-            <svg class="w-14 h-14 md:w-20 md:h-20 opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <!-- 3. Clipboard Checklist (EHS Inspection) - Kiri Tengah Bawah -->
+        <div class="absolute top-[52%] left-[4%] md:left-[8%] text-purple-400 opacity-60 animate-float-bg-slow drop-shadow-md" style="--r-start: -15deg; --r-end: 5deg;">
+            <svg class="w-16 h-16 md:w-20 md:h-20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                 <rect x="4" y="4" width="16" height="16" rx="2" />
                 <path d="M9 12l2 2 4-4" />
                 <path d="M12 4v4" />
             </svg>
         </div>
 
-        <!-- 4. First Aid / Safety Cross (Health) - Bottom Right -->
-        <div class="absolute bottom-[25%] right-[8%] md:right-[15%] text-pink-400 animate-float-bg drop-shadow-sm" style="--r-start: 10deg; --r-end: 25deg;">
-            <svg class="w-12 h-12 md:w-16 md:h-16 opacity-50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" />
+        <!-- 4. Warning Triangle (Hazard) - Kiri Bawah Atas -->
+        <div class="absolute top-[75%] left-[12%] md:left-[18%] text-amber-500 opacity-50 animate-float-bg drop-shadow-md" style="--r-start: -5deg; --r-end: 15deg;">
+            <svg class="w-14 h-14 md:w-20 md:h-20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
         </div>
 
-        <!-- 5. Traffic Cone (Safety) - Bottom Left -->
-        <div class="absolute bottom-[15%] left-[12%] md:left-[25%] text-orange-200 animate-float-bg-delayed drop-shadow-sm" style="--r-start: -5deg; --r-end: 15deg;">
-            <svg class="w-10 h-10 md:w-14 md:h-14 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <!-- 5. Traffic Cone (Safety Barrier) - Kiri Bawah Mentok -->
+        <div class="absolute bottom-[6%] left-[4%] md:left-[10%] text-orange-500 opacity-60 animate-float-bg-delayed drop-shadow-md" style="--r-start: -10deg; --r-end: 5deg;">
+            <svg class="w-16 h-16 md:w-24 md:h-24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                 <path d="M12 2L7 20h10z" />
                 <path d="M8.5 10h7" />
                 <path d="M7.5 15h9" />
             </svg>
         </div>
-        
-        <!-- 6. Gear (Engineering/System) - Center Right -->
-        <div class="absolute top-[60%] right-[5%] md:right-[12%] text-pink-200 animate-float-bg drop-shadow-sm" style="--r-start: 0deg; --r-end: 45deg;">
-            <svg class="w-12 h-12 md:w-16 md:h-16 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+
+
+        <!-- === KANAN === -->
+
+        <!-- 6. Leaf (Environment) - Kanan Atas -->
+        <div class="absolute top-[12%] right-[8%] md:right-[15%] text-emerald-400 opacity-60 animate-float-bg-delayed drop-shadow-md" style="--r-start: 15deg; --r-end: -5deg;">
+            <svg class="w-16 h-16 md:w-24 md:h-24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M11 20A7 7 0 0 1 4 13C4 8.5 8 4 12 4s8 4.5 8 9a7 7 0 0 1-7 7H11z" />
+                <path d="M11 20v-5" />
+            </svg>
+        </div>
+
+        <!-- 7. Shield with Check (Protection) - Kanan Tengah Atas -->
+        <div class="absolute top-[32%] right-[20%] md:right-[26%] text-blue-400 opacity-50 animate-float-bg-slow drop-shadow-md" style="--r-start: -5deg; --r-end: 15deg;">
+            <svg class="w-14 h-14 md:w-16 md:h-16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+            </svg>
+        </div>
+
+        <!-- 8. Gear (Engineering/System) - Kanan Tengah Bawah -->
+        <div class="absolute top-[55%] right-[5%] md:right-[10%] text-slate-400 opacity-60 animate-float-bg drop-shadow-md" style="--r-start: 0deg; --r-end: 45deg;">
+            <svg class="w-16 h-16 md:w-24 md:h-24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                 <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
                 <circle cx="12" cy="12" r="4"/>
+            </svg>
+        </div>
+
+        <!-- 9. Factory (Occupational/Industry) - Kanan Bawah Atas -->
+        <div class="absolute top-[72%] right-[18%] md:right-[24%] text-indigo-400 opacity-50 animate-float-bg-delayed drop-shadow-md" style="--r-start: 10deg; --r-end: -10deg;">
+            <svg class="w-14 h-14 md:w-20 md:h-20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                <path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>
+            </svg>
+        </div>
+
+        <!-- 10. First Aid / Safety Cross (Health) - Kanan Bawah Mentok -->
+        <div class="absolute bottom-[8%] right-[8%] md:right-[14%] text-rose-400 opacity-60 animate-float-bg drop-shadow-md" style="--r-start: 15deg; --r-end: 30deg;">
+            <svg class="w-16 h-16 md:w-20 md:h-20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" />
             </svg>
         </div>
     </div>
@@ -222,7 +263,7 @@
         
         <div id="parallax-wrapper" class="relative w-full flex justify-center mb-4 sm:mb-6 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group mt-8">
             
-            <!-- Posisi Element Teks & Musik (Wrapper pointer-events-none agar tidak memblokir klik avatar) -->
+            <!-- Posisi Element Teks & Musik -->
             <div class="absolute z-30 -top-24 sm:-top-28 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none">
                 
                 <!-- Dynamic Island Music Player (Updated for Hunter Hayes) -->
@@ -230,13 +271,12 @@
                     <!-- Play/Pause Icon -->
                     <div class="bg-pink-500 rounded-full p-1.5 flex items-center justify-center">
                         <svg id="music-icon" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <!-- Default: Play Icon -->
                             <path id="music-icon-path" d="M8 5v14l11-7z"/>
                         </svg>
                     </div>
                     <!-- Text / Song Info -->
                     <div class="flex flex-col min-w-[80px]">
-                        <span class="font-bold text-xs sm:text-sm text-pink-300 leading-tight">Happy Birthday</span>
+                        <span class="font-bold text-xs sm:text-sm text-pink-300 leading-tight">21</span>
                         <span class="text-[9px] sm:text-[10px] text-gray-300 leading-tight">Hunter Hayes</span>
                     </div>
                     <!-- Audio Visualizer -->
@@ -426,7 +466,7 @@
 
     <div id="intro-overlay" class="absolute inset-0 bg-white/30 backdrop-blur-md z-40 flex items-center justify-center cursor-pointer overlay-transition">
         <div class="bg-white/80 backdrop-blur-lg border border-white/50 p-5 sm:p-8 rounded-3xl shadow-2xl animate-breathe text-center w-[90%] max-w-sm transform transition-transform hover:scale-105">
-            <h2 class="font-title text-xl sm:text-2xl text-pink-600 mb-2">klik yaa..</h2>
+            <h2 class="font-title text-xl sm:text-2xl text-pink-600 mb-2">klik yaa</h2>
             <!-- <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">Sentuh untuk membuka kejutan spesialmu! ✨</p> -->
         </div>
     </div>
@@ -458,8 +498,8 @@
         // ================= STATE & CONFIG =================
         const bdayText = "happy 21st birthday puspi!";
         const wishText = "wish you all the best. be happy, always.";
-        const svgPlay = "M8 5v14l11-7z"; // Play icon path
-        const svgPause = "M6 19h4V5H6v14zm8-14v14h4V5h-4z"; // Pause icon path
+        const svgPlay = "M8 5v14l11-7z"; 
+        const svgPause = "M6 19h4V5H6v14zm8-14v14h4V5h-4z"; 
         
         let isPlaying = false;
         let hasBlown = false;
@@ -637,10 +677,9 @@
 
         // ================= INTERACTION EVENT =================
         
-        // 1. Klik Overlay Awal -> Muncul Dynamic Island & Tooltip Lilin
         function openGift() {
             introOverlay.classList.add('hide-overlay');
-            isPlaying = true; // Izinkan Parallax jalan
+            isPlaying = true;
 
             setTimeout(() => {
                 dynamicIsland.classList.remove('opacity-0');
@@ -648,24 +687,20 @@
             }, 500);
         }
 
-        // 2. Klik Play/Pause di Dynamic Island
         function toggleMusic(e) {
-            e.stopPropagation(); // Mencegah klik tembus ke avatar di bawahnya
+            e.stopPropagation();
 
             if (bgMusic.paused) {
-                // Play music
                 bgMusic.play().catch(err => console.log("Audio play failed:", err));
                 musicIconPath.setAttribute('d', svgPause);
                 visualizer.classList.add('playing');
             } else {
-                // Pause music
                 bgMusic.pause();
                 musicIconPath.setAttribute('d', svgPlay);
                 visualizer.classList.remove('playing');
             }
         }
 
-        // 3. Klik Avatar -> Tiup Lilin & Mulai Animasi Utama
         async function blowCandle() {
             if (!isPlaying || hasBlown) return;
             hasBlown = true;
@@ -690,18 +725,16 @@
             startAnimationLoop(currentSequence);
         }
 
-        // 4. Klik Ulang (Restart)
         function resetAnimation() {
             currentSequence++;
             isPlaying = false;
             hasBlown = false;
             
-            // Matikan Music & Reset Visualizer Island
             bgMusic.pause();
             bgMusic.currentTime = 0;
             musicIconPath.setAttribute('d', svgPlay);
             visualizer.classList.remove('playing');
-            dynamicIsland.classList.add('opacity-0'); // Sembunyikan Island
+            dynamicIsland.classList.add('opacity-0'); 
 
             stopConfetti();
 
@@ -726,7 +759,6 @@
             introOverlay.classList.remove('hide-overlay');
         }
 
-        // Attach listeners
         introOverlay.addEventListener('click', openGift);
         dynamicIsland.addEventListener('click', toggleMusic);
         document.getElementById('character-container').addEventListener('click', blowCandle);
