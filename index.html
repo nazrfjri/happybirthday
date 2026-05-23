@@ -120,7 +120,7 @@
 
     <div id="countdown-overlay" class="fixed inset-0 z-40 bg-[#0F111A] flex flex-col items-center justify-center opacity-0 transition-opacity duration-1000" style="display: none;">
         <div class="text-center">
-            <p class="font-code text-pink-500 text-xs sm:text-sm mb-3 tracking-[0.3em] uppercase opacity-70">time countdown</p>
+            <p class="font-code text-pink-500 text-xs sm:text-sm mb-3 tracking-[0.3em] uppercase opacity-70">Time Countdown</p>
             <div id="countdown-clock" class="font-title text-5xl sm:text-7xl md:text-8xl text-white font-bold tracking-wider drop-shadow-[0_0_20px_rgba(244,114,182,0.4)] transition-all duration-300">
                 23:59:<span id="countdown-sec">57</span>
             </div>
@@ -422,38 +422,44 @@
         
     </div>
 
-    <div id="pb-modal" class="fixed inset-0 bg-black/90 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto no-scrollbar">
-        <div class="relative w-full max-w-sm px-4 flex flex-col items-center my-10">
-            <button id="pb-close" class="absolute -top-12 right-4 text-white hover:text-pink-400 p-2">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
+    <div id="pb-modal" class="fixed inset-0 bg-black/90 z-[60] opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto no-scrollbar">
+        
+        <button id="pb-close" class="fixed top-4 right-4 z-[70] text-white hover:text-pink-400 p-2 bg-white/10 backdrop-blur-md rounded-full shadow-lg transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
 
-            <div id="pb-preview-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden shadow-2xl border-4 border-white pb-flash-target">
-                <video id="pb-video" autoplay playsinline class="w-full h-full object-cover mirror-feed filter-normal"></video>
-                <div id="pb-countdown" class="absolute inset-0 flex items-center justify-center text-[120px] font-title font-bold text-white drop-shadow-[0_4px_10px_rgba(236,72,153,0.8)] opacity-0 pointer-events-none transition-opacity">3</div>
-            </div>
-
-            <div id="pb-result-container" class="hidden flex-col items-center w-full max-h-[85vh] overflow-y-auto no-scrollbar pb-4">
-                <canvas id="pb-canvas" class="hidden"></canvas> 
-                <img id="pb-result-img" class="w-full max-w-[300px] object-contain shadow-2xl rounded-sm" src="" alt="Photobooth Result" />
-            </div>
-
-            <div id="pb-controls" class="mt-6 flex flex-col w-full gap-4 items-center">
-                <div class="flex flex-wrap justify-center gap-2 p-2 bg-white/10 rounded-2xl backdrop-blur-sm">
-                    <button class="filter-btn active bg-white text-pink-600 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-normal">normal</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-bw">B&W</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-vintage">vintage</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-pink">soft pink</button>
+        <div class="min-h-full w-full flex flex-col items-center justify-center py-16 px-4">
+            
+            <div class="relative w-full max-w-sm flex flex-col items-center">
+                
+                <div id="pb-preview-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden shadow-2xl border-4 border-white pb-flash-target">
+                    <video id="pb-video" autoplay playsinline class="w-full h-full object-cover mirror-feed filter-normal"></video>
+                    <div id="pb-countdown" class="absolute inset-0 flex items-center justify-center text-[120px] font-title font-bold text-white drop-shadow-[0_4px_10px_rgba(236,72,153,0.8)] opacity-0 pointer-events-none transition-opacity">3</div>
                 </div>
-                <button id="pb-start-btn" class="w-16 h-16 bg-white border-4 border-pink-400 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.5)] active:scale-95 transition-transform"></button>
-            </div>
 
-            <div id="pb-actions" class="hidden mt-6 flex w-full justify-center gap-4">
-                <button id="pb-retake-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition-colors shadow-lg">retake</button>
-                <button id="pb-download-btn" class="px-5 py-2.5 bg-pink-500 text-white font-bold rounded-full hover:bg-pink-600 transition-colors shadow-lg flex gap-2 items-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> download
-                </button>
+                <div id="pb-result-container" class="hidden flex-col items-center w-full pb-4">
+                    <canvas id="pb-canvas" class="hidden"></canvas> 
+                    <img id="pb-result-img" class="w-full max-w-[300px] object-contain shadow-2xl rounded-sm" src="" alt="Photobooth Result" />
+                </div>
+
+                <div id="pb-controls" class="mt-6 flex flex-col w-full gap-4 items-center">
+                    <div class="flex flex-wrap justify-center gap-2 p-2 bg-white/10 rounded-2xl backdrop-blur-sm">
+                        <button class="filter-btn active bg-white text-pink-600 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-normal">Normal</button>
+                        <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-bw">B&W</button>
+                        <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-vintage">Vintage</button>
+                        <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-pink">Soft Pink</button>
+                    </div>
+                    <button id="pb-start-btn" class="w-16 h-16 bg-white border-4 border-pink-400 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.5)] active:scale-95 transition-transform"></button>
+                </div>
+
+                <div id="pb-actions" class="hidden mt-6 flex w-full justify-center gap-4">
+                    <button id="pb-retake-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition-colors shadow-lg">Retake</button>
+                    <button id="pb-download-btn" class="px-5 py-2.5 bg-pink-500 text-white font-bold rounded-full hover:bg-pink-600 transition-colors shadow-lg flex gap-2 items-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Download
+                    </button>
+                </div>
             </div>
+            
         </div>
     </div>
 
@@ -688,7 +694,7 @@
         const pbControls = document.getElementById('pb-controls'); const pbActions = document.getElementById('pb-actions');
         
         let pbStream = null; let currentFilter = 'filter-normal'; let capturedPhotos = [];
-        const squareSize = 600; // Standar ukuran kotak referensi untuk foto
+        const squareSize = 600; 
 
         async function openPhotobooth() {
             pbModal.classList.remove('opacity-0', 'pointer-events-none');
@@ -718,7 +724,6 @@
         document.getElementById('pb-start-btn').addEventListener('click', async () => {
             pbControls.classList.add('hidden'); capturedPhotos = [];
             
-            // Temporary canvas untuk tangkap frame kotak (600x600)
             const tempCanvas = document.createElement('canvas'); tempCanvas.width = squareSize; tempCanvas.height = squareSize;
             const tCtx = tempCanvas.getContext('2d');
 
@@ -732,26 +737,20 @@
                 const flashEl = document.querySelector('.pb-flash-target');
                 flashEl.classList.add('pb-flash'); setTimeout(() => flashEl.classList.remove('pb-flash'), 300);
 
-                // --- BAGIAN KRITIS: Perbaikan Distorsi (Cropping Kotak Asli) ---
                 const videoW = pbVideo.videoWidth; const videoH = pbVideo.videoHeight;
                 const videoAspectRatio = videoW / videoH;
                 let sx, sy, sw, sh;
 
-                if (videoAspectRatio > 1) { // Landscape (Laptop)
-                    sw = videoH; sh = videoH;
-                    sx = (videoW - sw) / 2; sy = 0;
-                } else { // Portrait (HP)
-                    sw = videoW; sh = videoW;
-                    sx = 0; sy = (videoH - sh) / 2;
+                if (videoAspectRatio > 1) { 
+                    sw = videoH; sh = videoH; sx = (videoW - sw) / 2; sy = 0;
+                } else { 
+                    sw = videoW; sh = videoW; sx = 0; sy = (videoH - sh) / 2;
                 }
 
                 tCtx.clearRect(0,0, tempCanvas.width, tempCanvas.height); tCtx.save();
-                tCtx.translate(tempCanvas.width, 0); tCtx.scale(-1, 1); // Mirror
-                // Draw cropped square center from source video
+                tCtx.translate(tempCanvas.width, 0); tCtx.scale(-1, 1); 
                 tCtx.drawImage(pbVideo, sx, sy, sw, sh, 0, 0, tempCanvas.width, tempCanvas.height); tCtx.restore();
-                // -------------------------------------------------------------
-
-                // Apply Filters
+                
                 if(currentFilter !== 'filter-normal') {
                     let imgData = tCtx.getImageData(0,0, tempCanvas.width, tempCanvas.height); let d = imgData.data;
                     for (let j = 0; j < d.length; j += 4) {
@@ -774,10 +773,9 @@
         });
 
         function generateStrip() {
-            // Tata letak responsif didasarkan pada kotak referensi 600px
             const marginW = 40; const marginH = 80; const gap = 20; const textH = 120;
-            const canvasW = squareSize + (2 * marginW); // 680
-            const canvasH = marginH + (squareSize * 3) + (gap * 2) + textH; // 2040 (lebih tinggi karena foto kotak asli)
+            const canvasW = squareSize + (2 * marginW); 
+            const canvasH = marginH + (squareSize * 3) + (gap * 2) + textH; 
             pbCanvas.width = canvasW; pbCanvas.height = canvasH;
 
             pbCtx.fillStyle = "#ffffff"; pbCtx.fillRect(0, 0, canvasW, canvasH);
@@ -808,7 +806,7 @@
         });
 
         document.getElementById('pb-download-btn').addEventListener('click', () => {
-            const link = document.createElement('a'); link.download = `photobooth_birthday_girl.png`; link.href = pbResultImg.src; link.click();
+            const link = document.createElement('a'); link.download = `Photobooth_Puspi_21.png`; link.href = pbResultImg.src; link.click();
         });
 
         function closePhotobooth() {
