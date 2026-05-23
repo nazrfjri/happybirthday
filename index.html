@@ -113,7 +113,7 @@
         </svg>
         <div class="z-10 text-center px-6 mt-32">
             <p id="sky-text" class="font-quicksand font-bold text-lg md:text-2xl text-indigo-100 tracking-wide opacity-0 transition-opacity duration-1000 leading-relaxed drop-shadow-md">
-                <!-- Di bawah rasi bintang Gemini yang bersinar... -->
+                hello, gemini..
             </p>
         </div>
     </div>
@@ -132,7 +132,7 @@
 
     <div id="calendar-overlay" class="fixed inset-0 z-30 flex flex-col items-center justify-center pointer-events-none opacity-0 scale-90 overlay-transition" style="display: none;">
         <p id="cal-text" class="font-quicksand font-bold text-lg md:text-2xl text-purple-700 tracking-wide opacity-0 transition-opacity duration-700 mb-8 z-10 bg-white/60 px-6 py-2 rounded-full backdrop-blur-sm">
-            🎉✨🎉
+            🎂🎈
         </p>
         <div class="relative drop-shadow-2xl">
             <svg viewBox="0 0 240 260" class="w-64 sm:w-80 md:w-96 h-auto">
@@ -422,36 +422,36 @@
         
     </div>
 
-    <div id="pb-modal" class="fixed inset-0 bg-black/90 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-        <div class="relative w-full max-w-sm px-4 flex flex-col items-center">
+    <div id="pb-modal" class="fixed inset-0 bg-black/90 z-[60] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto no-scrollbar">
+        <div class="relative w-full max-w-sm px-4 flex flex-col items-center my-10">
             <button id="pb-close" class="absolute -top-12 right-4 text-white hover:text-pink-400 p-2">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <div id="pb-preview-container" class="relative w-full aspect-[3/4] bg-gray-900 rounded-lg overflow-hidden shadow-2xl border-4 border-white pb-flash-target">
+            <div id="pb-preview-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden shadow-2xl border-4 border-white pb-flash-target">
                 <video id="pb-video" autoplay playsinline class="w-full h-full object-cover mirror-feed filter-normal"></video>
                 <div id="pb-countdown" class="absolute inset-0 flex items-center justify-center text-[120px] font-title font-bold text-white drop-shadow-[0_4px_10px_rgba(236,72,153,0.8)] opacity-0 pointer-events-none transition-opacity">3</div>
             </div>
 
-            <div id="pb-result-container" class="hidden flex-col items-center w-full max-h-[75vh] overflow-y-auto no-scrollbar rounded-lg shadow-2xl pb-4">
+            <div id="pb-result-container" class="hidden flex-col items-center w-full max-h-[85vh] overflow-y-auto no-scrollbar pb-4">
                 <canvas id="pb-canvas" class="hidden"></canvas> 
-                <img id="pb-result-img" class="w-3/4 max-w-[250px] object-contain shadow-2xl rounded-sm" src="" alt="Photobooth Result" />
+                <img id="pb-result-img" class="w-full max-w-[300px] object-contain shadow-2xl rounded-sm" src="" alt="Photobooth Result" />
             </div>
 
             <div id="pb-controls" class="mt-6 flex flex-col w-full gap-4 items-center">
-                <div class="flex gap-2 p-1 bg-white/10 rounded-full backdrop-blur-sm">
-                    <button class="filter-btn active bg-white text-pink-600 px-3 py-1 rounded-full text-xs font-bold transition-colors" data-filter="filter-normal">Normal</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1 rounded-full text-xs font-bold transition-colors" data-filter="filter-bw">B&W</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1 rounded-full text-xs font-bold transition-colors" data-filter="filter-vintage">Vintage</button>
-                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1 rounded-full text-xs font-bold transition-colors" data-filter="filter-pink">Soft Pink</button>
+                <div class="flex flex-wrap justify-center gap-2 p-2 bg-white/10 rounded-2xl backdrop-blur-sm">
+                    <button class="filter-btn active bg-white text-pink-600 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-normal">normal</button>
+                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-bw">B&W</button>
+                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-vintage">vintage</button>
+                    <button class="filter-btn text-white hover:bg-white/20 px-3 py-1.5 rounded-full text-xs font-bold transition-colors" data-filter="filter-pink">soft pink</button>
                 </div>
                 <button id="pb-start-btn" class="w-16 h-16 bg-white border-4 border-pink-400 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.5)] active:scale-95 transition-transform"></button>
             </div>
 
             <div id="pb-actions" class="hidden mt-6 flex w-full justify-center gap-4">
-                <button id="pb-retake-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition-colors shadow-lg">Retake</button>
+                <button id="pb-retake-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition-colors shadow-lg">retake</button>
                 <button id="pb-download-btn" class="px-5 py-2.5 bg-pink-500 text-white font-bold rounded-full hover:bg-pink-600 transition-colors shadow-lg flex gap-2 items-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Download
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> download
                 </button>
             </div>
         </div>
@@ -460,7 +460,7 @@
     <div id="intro-overlay" class="absolute inset-0 bg-white/30 backdrop-blur-md z-50 flex items-center justify-center cursor-pointer overlay-transition">
         <div class="bg-white/80 backdrop-blur-lg border border-white/50 p-5 sm:p-8 rounded-3xl shadow-2xl animate-breathe text-center w-[90%] max-w-sm transform transition-transform hover:scale-105">
             <h2 class="font-title text-xl sm:text-2xl text-pink-600 mb-2">start</h2>
-            <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">*music nya bisa di switch kok hehe</p>
+            <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">*music nya bisa di switch kok</p>
         </div>
     </div>
 
@@ -643,7 +643,7 @@
             if (interactionStage === 0) { 
                 setExpression('dizzy'); showTooltip("masi blm kumpul nyawa nya wkw tap lg coba"); interactionStage = 1;
             } else if (interactionStage === 1) { 
-                setExpression('normal'); showTooltip("nah udh seger kan.. skrg tap buat panggil kue nya!"); interactionStage = 2;
+                setExpression('normal'); showTooltip("nah udh seger kan.. skrg tap buat panggil kejutannya!"); interactionStage = 2;
             } else if (interactionStage === 2) { 
                 cakeGroup.style.transform = 'translateY(0px)'; cakeGroup.style.opacity = '1'; setExpression('surprised');
                 showTooltip("nyalain lilin nya ya"); interactionStage = 3;
@@ -688,17 +688,22 @@
         const pbControls = document.getElementById('pb-controls'); const pbActions = document.getElementById('pb-actions');
         
         let pbStream = null; let currentFilter = 'filter-normal'; let capturedPhotos = [];
+        const squareSize = 600; // Standar ukuran kotak referensi untuk foto
 
         async function openPhotobooth() {
             pbModal.classList.remove('opacity-0', 'pointer-events-none');
             pbPreviewCont.classList.remove('hidden'); pbControls.classList.remove('hidden');
-            pbResultCont.classList.add('hidden', 'flex'); pbActions.classList.add('hidden');
+            pbResultCont.classList.add('hidden'); pbActions.classList.add('hidden');
+            pbVideo.className = `w-full h-full object-cover mirror-feed filter-normal`;
+            currentFilter = 'filter-normal';
+            document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('bg-white', 'text-pink-600'); b.classList.add('text-white'); });
+            document.querySelector('[data-filter="filter-normal"]').classList.add('bg-white', 'text-pink-600'); document.querySelector('[data-filter="filter-normal"]').classList.remove('text-white');
             capturedPhotos = [];
             
             try {
                 pbStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
                 pbVideo.srcObject = pbStream;
-            } catch (err) { alert('Ops, kamera gabisa bisa diakses! pastiin beri izin browser ya.'); closePhotobooth(); }
+            } catch (err) { alert('ops, kamera gabisa diakses! pastiin kasih izin browser ya.'); closePhotobooth(); }
         }
 
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -712,7 +717,9 @@
 
         document.getElementById('pb-start-btn').addEventListener('click', async () => {
             pbControls.classList.add('hidden'); capturedPhotos = [];
-            const tempCanvas = document.createElement('canvas'); tempCanvas.width = 600; tempCanvas.height = 450;
+            
+            // Temporary canvas untuk tangkap frame kotak (600x600)
+            const tempCanvas = document.createElement('canvas'); tempCanvas.width = squareSize; tempCanvas.height = squareSize;
             const tCtx = tempCanvas.getContext('2d');
 
             for(let i=0; i<3; i++) {
@@ -725,10 +732,26 @@
                 const flashEl = document.querySelector('.pb-flash-target');
                 flashEl.classList.add('pb-flash'); setTimeout(() => flashEl.classList.remove('pb-flash'), 300);
 
-                tCtx.clearRect(0,0, tempCanvas.width, tempCanvas.height); tCtx.save();
-                tCtx.translate(tempCanvas.width, 0); tCtx.scale(-1, 1);
-                tCtx.drawImage(pbVideo, 0, 0, tempCanvas.width, tempCanvas.height); tCtx.restore();
+                // --- BAGIAN KRITIS: Perbaikan Distorsi (Cropping Kotak Asli) ---
+                const videoW = pbVideo.videoWidth; const videoH = pbVideo.videoHeight;
+                const videoAspectRatio = videoW / videoH;
+                let sx, sy, sw, sh;
 
+                if (videoAspectRatio > 1) { // Landscape (Laptop)
+                    sw = videoH; sh = videoH;
+                    sx = (videoW - sw) / 2; sy = 0;
+                } else { // Portrait (HP)
+                    sw = videoW; sh = videoW;
+                    sx = 0; sy = (videoH - sh) / 2;
+                }
+
+                tCtx.clearRect(0,0, tempCanvas.width, tempCanvas.height); tCtx.save();
+                tCtx.translate(tempCanvas.width, 0); tCtx.scale(-1, 1); // Mirror
+                // Draw cropped square center from source video
+                tCtx.drawImage(pbVideo, sx, sy, sw, sh, 0, 0, tempCanvas.width, tempCanvas.height); tCtx.restore();
+                // -------------------------------------------------------------
+
+                // Apply Filters
                 if(currentFilter !== 'filter-normal') {
                     let imgData = tCtx.getImageData(0,0, tempCanvas.width, tempCanvas.height); let d = imgData.data;
                     for (let j = 0; j < d.length; j += 4) {
@@ -751,23 +774,28 @@
         });
 
         function generateStrip() {
-            const w = 680; const h = 1590; pbCanvas.width = w; pbCanvas.height = h;
-            pbCtx.fillStyle = "#ffffff"; pbCtx.fillRect(0, 0, w, h);
+            // Tata letak responsif didasarkan pada kotak referensi 600px
+            const marginW = 40; const marginH = 80; const gap = 20; const textH = 120;
+            const canvasW = squareSize + (2 * marginW); // 680
+            const canvasH = marginH + (squareSize * 3) + (gap * 2) + textH; // 2040 (lebih tinggi karena foto kotak asli)
+            pbCanvas.width = canvasW; pbCanvas.height = canvasH;
+
+            pbCtx.fillStyle = "#ffffff"; pbCtx.fillRect(0, 0, canvasW, canvasH);
 
             let promises = capturedPhotos.map((src, i) => {
                 return new Promise(res => {
                     let img = new Image(); img.src = src;
-                    img.onload = () => { pbCtx.drawImage(img, 40, 80 + (i * 470), 600, 450); res(); }
+                    img.onload = () => { pbCtx.drawImage(img, marginW, marginH + (i * (squareSize + gap)), squareSize, squareSize); res(); }
                 });
             });
 
             Promise.all(promises).then(() => {
                 pbCtx.fillStyle = "#ec4899"; pbCtx.font = "bold 40px 'Quicksand', sans-serif"; pbCtx.textAlign = "center";
-                pbCtx.fillText("birthday girl! 🎀", w/2, h - 50);
-                pbCtx.fillStyle = "#6b7280"; pbCtx.font = "24px 'Quicksand', sans-serif"; pbCtx.fillText("22 Mei 2026", w/2, h - 20);
+                pbCtx.fillText("birthday girl! 🎀", canvasW/2, canvasH - 50);
+                pbCtx.fillStyle = "#6b7280"; pbCtx.font = "24px 'Quicksand', sans-serif"; pbCtx.fillText("22 Mei 2026", canvasW/2, canvasH - 20);
 
                 pbResultImg.src = pbCanvas.toDataURL('image/png');
-                pbPreviewCont.classList.add('hidden'); pbResultCont.classList.remove('hidden'); pbActions.classList.remove('hidden');
+                pbPreviewCont.classList.add('hidden'); pbResultCont.classList.remove('hidden'); pbActions.classList.remove('hidden'); pbControls.classList.add('hidden');
                 if(pbStream) pbStream.getTracks().forEach(t => t.stop());
             });
         }
@@ -775,11 +803,12 @@
         document.getElementById('pb-retake-btn').addEventListener('click', async () => {
             pbResultCont.classList.add('hidden'); pbActions.classList.add('hidden');
             pbPreviewCont.classList.remove('hidden'); pbControls.classList.remove('hidden');
+            capturedPhotos = [];
             try { pbStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false }); pbVideo.srcObject = pbStream; } catch (err) {}
         });
 
         document.getElementById('pb-download-btn').addEventListener('click', () => {
-            const link = document.createElement('a'); link.download = `Photobooth_Puspi_21.png`; link.href = pbResultImg.src; link.click();
+            const link = document.createElement('a'); link.download = `photobooth_birthday_girl.png`; link.href = pbResultImg.src; link.click();
         });
 
         function closePhotobooth() {
@@ -802,7 +831,7 @@
             countdownText.textContent = "";
             nightSkyOverlay.style.display = 'none'; nightSkyOverlay.classList.remove('opacity-100', 'opacity-0');
             constellationPath.classList.remove('draw-line'); shootingStar.classList.remove('animate-shooting-star');
-            // skyText.textContent = "Di bawah rasi bintang Gemini yang bersinar..."; skyText.classList.add('opacity-0');
+            skyText.textContent = "hello, gemini.."; skyText.classList.add('opacity-0');
 
             cakeGroup.style.transform = 'translateY(-150px)'; cakeGroup.style.opacity = '0'; flame.classList.remove('flame-blown'); flame.classList.add('opacity-0'); flame.classList.remove('animate-flicker'); smoke1.classList.remove('animate-smoke'); smoke2.classList.remove('animate-smoke'); sparkles.classList.add('opacity-0');
             
