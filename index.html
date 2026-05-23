@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Puspi!</title>
+    <title>Happy Birthday Puspi! 🎂</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,11 +28,11 @@
         @keyframes float-zzz { 0% { transform: translateY(0) scale(0.8) rotate(-5deg); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-30px) scale(1.2) rotate(5deg); opacity: 0; } }
         .anim-zzz { animation: float-zzz 3s infinite linear; }
 
-        /* Background Floating Items */
-        @keyframes float-bg { 0%, 100% { transform: translateY(0px) rotate(var(--r-start)); } 50% { transform: translateY(-15px) rotate(var(--r-end)); } }
-        .animate-float-bg { animation: float-bg 9s ease-in-out infinite; }
-        .animate-float-bg-delayed { animation: float-bg 12s ease-in-out infinite 2.5s; }
-        .animate-float-bg-slow { animation: float-bg 14s ease-in-out infinite 1s; }
+        /* Easter Eggs Animation */
+        @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+        .animate-wiggle { animation: wiggle 0.4s ease-in-out; }
+        @keyframes window-star { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(-60px, 60px); opacity: 0; } }
+        .anim-window-star { animation: window-star 0.8s ease-in-out forwards; }
 
         /* Flame & Sparks */
         @keyframes flicker { 0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 10px #FFB703); } 50% { transform: scale(0.9) rotate(2deg); filter: drop-shadow(0 0 15px #FFB703); } }
@@ -71,19 +71,27 @@
         /* Confetti */
         #confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 
-        /* Photobooth Specifics */
+        /* Photobooth & Hologram Specifics */
         .pb-flash { animation: flash 0.3s ease-out; }
         @keyframes flash { 0% { background-color: white; opacity: 1; } 100% { background-color: white; opacity: 0; } }
         
-        .floating-photo {
-            position: absolute; z-index: 4; display: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 4px; pointer-events: none;
-        }
+        .floating-photo { position: absolute; z-index: 4; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 4px; pointer-events: none; overflow: hidden; }
         .float-anim-1 { animation: float-1 6s ease-in-out infinite alternate; }
         .float-anim-2 { animation: float-2 6s ease-in-out infinite alternate; animation-delay: -3s; }
         @keyframes float-1 { 0% { transform: translateY(0) rotate(-10deg); } 100% { transform: translateY(-20px) rotate(-5deg); } }
         @keyframes float-2 { 0% { transform: translateY(0) rotate(10deg); } 100% { transform: translateY(-20px) rotate(15deg); } }
         
+        .hologram-shimmer {
+            position: absolute; top: 0; left: 0; width: 200%; height: 100%; pointer-events: none;
+            background: linear-gradient(135deg, transparent 20%, rgba(255,255,255,0.6) 40%, rgba(255,192,203,0.4) 50%, transparent 60%);
+            transform: translateX(-100%); animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(50%); } }
+
+        /* Envelope Drop */
+        @keyframes dropBounce { 0% { transform: translateY(-100px) scale(0.9); opacity: 0; } 60% { transform: translateY(10px) scale(1.05); opacity: 1; } 80% { transform: translateY(-5px) scale(0.98); } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        .anim-drop-bounce { animation: dropBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
         /* Video Mirroring & Filters */
         .mirror-feed { transform: scaleX(-1); }
         .filter-normal { filter: none; }
@@ -94,10 +102,16 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center overflow-hidden relative text-gray-800">
 
-    <audio id="bg-music" src="music-2.mpeg" preload="auto" loop></audio>
+    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
 
-    <img id="floating-pb-left" class="floating-photo float-anim-1 top-[15%] left-[5%] md:left-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white" src="" />
-    <img id="floating-pb-right" class="floating-photo float-anim-2 top-[20%] right-[5%] md:right-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white" src="" />
+    <div id="floating-pb-left" class="floating-photo float-anim-1 top-[15%] left-[5%] md:left-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white">
+        <img id="pb-left-img" class="w-full object-cover" src="" />
+        <div class="hologram-shimmer"></div>
+    </div>
+    <div id="floating-pb-right" class="floating-photo float-anim-2 top-[20%] right-[5%] md:right-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white">
+        <img id="pb-right-img" class="w-full object-cover" src="" />
+        <div class="hologram-shimmer"></div>
+    </div>
 
     <div id="night-sky-overlay" class="fixed inset-0 z-40 bg-[#0B0F19] flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000" style="display: none;">
         <div id="shooting-star" class="shooting-star"></div>
@@ -164,37 +178,56 @@
 
     <div id="main-scene" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-1000 pointer-events-none">
         
+        <div id="time-overlay" class="absolute inset-0 bg-[#0B0F19] opacity-0 transition-opacity duration-[3000ms] pointer-events-none mix-blend-multiply z-0"></div>
+        <div id="spotlight" class="absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none z-[1]" style="background: radial-gradient(circle at 35% 65%, rgba(253, 224, 71, 0.2) 0%, transparent 40%);"></div>
+
         <div id="room-bg" class="absolute inset-0 z-0 overflow-hidden">
-            <svg viewBox="0 0 100 150" class="absolute top-[8%] left-[2%] md:left-[8%] w-32 md:w-48 opacity-30">
+            <svg id="window-svg" viewBox="0 0 100 150" class="absolute top-[8%] left-[2%] md:left-[8%] w-32 md:w-48 opacity-40 cursor-pointer pointer-events-auto transition-transform hover:scale-105">
                 <rect x="10" y="10" width="80" height="120" rx="4" fill="none" stroke="#64748B" stroke-width="2"/>
                 <line x1="10" y1="70" x2="90" y2="70" stroke="#64748B" stroke-width="2"/> <line x1="50" y1="10" x2="50" y2="130" stroke="#64748B" stroke-width="2"/>
-                <path d="M 28 35 A 8 8 0 1 1 42 45 A 12 12 0 1 0 28 35" fill="#FDE047" opacity="0.8"/>
+                <g id="win-moon" class="transition-transform duration-[3000ms] transform translate-y-0 opacity-100">
+                    <path d="M 28 35 A 8 8 0 1 1 42 45 A 12 12 0 1 0 28 35" fill="#FDE047" opacity="0.8"/>
+                </g>
+                <g id="win-sun" class="transition-all duration-[3000ms] transform translate-y-12 opacity-0">
+                    <circle cx="50" cy="40" r="14" fill="#FCA5A5" opacity="0.9"/>
+                    <circle cx="50" cy="40" r="18" fill="#FCA5A5" opacity="0.3"/>
+                </g>
+                <line id="win-star" x1="80" y1="20" x2="20" y2="80" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" class="opacity-0"/>
             </svg>
-            <svg viewBox="0 0 120 80" class="absolute top-[12%] right-[2%] md:right-[8%] w-40 md:w-56 opacity-40">
+
+            <svg id="corkboard-svg" viewBox="0 0 120 80" class="absolute top-[12%] right-[2%] md:right-[8%] w-40 md:w-56 opacity-50 cursor-pointer pointer-events-auto transform-origin-top">
                 <rect x="5" y="5" width="110" height="70" rx="3" fill="none" stroke="#64748B" stroke-width="2"/>
                 <rect x="15" y="15" width="25" height="35" fill="#FEF08A" stroke="#64748B" stroke-width="1" transform="rotate(-3 15 15)"/>
                 <path d="M 22 32 L 32 32 M 27 27 L 27 37" stroke="#64748B" stroke-width="2" stroke-linecap="round" transform="rotate(-3 15 15)"/> 
                 <rect x="50" y="20" width="30" height="20" fill="#E2E8F0" stroke="#64748B" stroke-width="1" transform="rotate(2 50 20)"/>
                 <rect x="85" y="18" width="15" height="15" fill="#FBCFE8" stroke="#64748B" stroke-width="1" transform="rotate(-5 85 18)"/>
             </svg>
+
+            <svg id="desk-lamp-svg" viewBox="0 0 60 100" class="absolute bottom-[35%] left-[10%] md:left-[22%] w-16 md:w-20 opacity-50 cursor-pointer pointer-events-auto hover:opacity-70 transition-opacity">
+                <ellipse cx="30" cy="95" rx="20" ry="5" fill="none" stroke="#64748B" stroke-width="2"/>
+                <path d="M 30 90 L 25 45 L 40 25" fill="none" stroke="#64748B" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M 30 15 L 55 20 L 45 40 L 20 35 Z" fill="none" stroke="#64748B" stroke-width="2" stroke-linejoin="round"/>
+                <path id="lamp-light" class="transition-opacity duration-300 opacity-0" d="M 45 40 L 55 90 L 15 80 Z" fill="#FEF08A" opacity="0.3"/>
+            </svg>
+
             <div class="absolute bottom-[35%] left-0 w-full border-t-[3px] border-slate-300 opacity-40"></div>
         </div>
 
         <div id="fireflies-container" class="absolute inset-0 pointer-events-none z-1"></div>
         <canvas id="confetti-canvas"></canvas>
 
-        <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-4 sm:px-6 mt-16 sm:mt-24 pointer-events-auto">
+        <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-4 sm:px-6 mt-16 sm:mt-24 pointer-events-none">
             
-            <div id="parallax-wrapper" class="relative w-full flex justify-center mb-2 sm:mb-4 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group">
+            <div id="parallax-wrapper" class="relative w-full flex justify-center mb-2 sm:mb-4 drop-shadow-2xl transition-transform duration-200 ease-out pointer-events-none group">
                 
                 <div id="tooltip-left" class="absolute -left-4 sm:-left-12 -top-6 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 opacity-0 transition-opacity duration-300 z-30 pointer-events-none">
-                    SURPRISE!!
+                    SURPRISE!! 🥳🎉
                 </div>
                 <div id="tooltip-right" class="absolute -right-4 sm:-right-8 top-0 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 opacity-0 transition-opacity duration-300 z-30 pointer-events-none" style="animation-delay: 0.2s">
-                    HBD Puspi!
+                    HBD Puspi! 🎈
                 </div>
 
-                <div class="animate-float" id="character-container">
+                <div class="animate-float pointer-events-auto cursor-pointer" id="character-container">
                     <svg viewBox="0 0 260 260" class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[420px] h-auto transform group-hover:scale-[1.01] transition-transform duration-500" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -322,7 +355,6 @@
                                     <path d="M 26 100 Q 30 104 34 100" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
                                 </g>
                             </g>
-
                             <g id="friend-guy2" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 55px 130px;">
                                 <g class="animate-float" style="animation-delay: 0.5s">
                                     <path d="M 40 155 Q 55 135 70 155 Z" fill="#1A1A1A"/> 
@@ -334,7 +366,6 @@
                                     <path d="M 51 140 Q 55 144 59 140" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
                                 </g>
                             </g>
-
                             <g id="friend-guy3" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 25px 165px;">
                                 <g class="animate-float" style="animation-delay: 0.8s">
                                     <path d="M 10 190 Q 25 170 40 190 Z" fill="#8B5A2B"/> 
@@ -345,7 +376,6 @@
                                     <path d="M 21 175 Q 25 179 29 175" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
                                 </g>
                             </g>
-
                             <g id="friend-girl1" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 220px 100px;">
                                 <g class="animate-float" style="animation-delay: 0.3s">
                                     <path d="M 205 125 Q 220 105 235 125 Z" fill="#151515"/> 
@@ -359,7 +389,6 @@
                                     <path d="M 217 107 Q 220 111 223 107" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
                                 </g>
                             </g>
-
                             <g id="friend-girl2" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 235px 145px;">
                                 <g class="animate-float" style="animation-delay: 0.6s">
                                     <path d="M 220 170 Q 235 150 250 170 Z" fill="#6A4B3A"/>
@@ -388,13 +417,13 @@
                         </div>
                     </div>
                     <div id="blow-tooltip" class="bg-white/95 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-300 text-center mx-auto" style="min-width: 280px;">
-                        dia ketiduran nunggu jam 12.. tap pelan-pelan deh
+                        Ssst... Puspi lagi ketiduran nungguin ultahnya. Tap pelan-pelan buat bangunin! 😴
                     </div>
                 </div>
 
             </div>
 
-            <div class="text-center w-full min-h-[160px] sm:min-h-[180px] z-20 flex flex-col items-center px-2 mt-4">
+            <div class="text-center w-full min-h-[160px] sm:min-h-[180px] z-20 flex flex-col items-center px-2 mt-4 pointer-events-none">
                 <h1 class="font-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-pink-500 mb-2 sm:mb-4 tracking-wide leading-tight text-glow transition-all duration-300" style="min-height: 4.5rem;">
                     <span id="text-bday"></span><span id="cursor-bday" class="cursor-blink inline-block w-[3px] sm:w-[4px] h-[0.9em] align-middle bg-transparent ml-1"></span>
                 </h1>
@@ -405,10 +434,34 @@
         </div>
     </div>
 
+    <div id="secret-envelope" class="fixed bottom-6 left-6 translate-y-[200px] opacity-0 cursor-pointer transition-all duration-1000 z-40 group flex flex-col items-start pointer-events-none">
+        <div class="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-[10px] sm:text-xs mb-2 animate-bounce border border-pink-100">
+            open it
+        </div>
+        <svg viewBox="0 0 100 70" class="w-16 h-16 md:w-20 md:h-20 drop-shadow-xl transform group-hover:scale-110 transition-transform">
+            <rect x="5" y="10" width="90" height="50" rx="3" fill="#FFF0F5" stroke="#FBCFE8" stroke-width="2"/>
+            <path d="M 5 10 L 50 40 L 95 10" fill="none" stroke="#FBCFE8" stroke-width="2"/>
+            <circle cx="50" cy="38" r="8" fill="#F43F5E"/> <path d="M 47 38 L 50 41 L 54 35" fill="none" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <div id="letter-modal" class="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 backdrop-blur-sm px-4">
+        <div class="relative w-full max-w-md bg-[#FFF9F9] rounded-xl shadow-2xl p-6 md:p-8 transform scale-90 transition-transform duration-500" id="letter-content" style="background-image: radial-gradient(#FBCFE8 1px, transparent 1px); background-size: 20px 20px;">
+            <button id="close-letter" class="absolute -top-4 -right-4 w-10 h-10 bg-white border-2 border-pink-200 text-pink-500 rounded-full shadow-md flex items-center justify-center hover:bg-pink-50 transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="font-quicksand text-gray-700 text-sm md:text-base leading-relaxed text-center space-y-4">
+                <h3 class="font-title text-2xl text-pink-600 mb-2">finally 21 yaa!</h3>
+                <p>honestly masi bingung mau nulis apa wkw but i really hope this year treats you kindly, brings you lots of good things and many reasons to smile. semoga yang lagi bikin capek sekarang, nantinya bisa worth it semua.</p>
+                <!-- <p>anw, happy birthday once again..</p> -->
+                <p class="font-bold text-pink-500 pt-2">anw, happy birthday once again..</p>
+            </div>
+        </div>
+    </div>
+
     <div id="action-buttons-container" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-3 z-50 opacity-0 pointer-events-none translate-y-4 transition-all duration-500 items-end">
-        
-        <div class="flex items-center gap-3 group cursor-pointer" onclick="openPhotobooth()">
-            <span class="text-xs sm:text-sm font-quicksand font-bold text-pink-500 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">take a photo?</span>
+        <div class="flex items-center gap-3 group cursor-pointer pointer-events-auto" onclick="openPhotobooth()">
+            <span class="text-xs sm:text-sm font-quicksand font-bold text-pink-500 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">Take a photo?</span>
             <button id="photo-btn" class="p-3 sm:p-4 bg-pink-500 text-white rounded-full shadow-xl hover:bg-pink-600 hover:scale-110 transition-all duration-300 focus:outline-none" aria-label="Photobooth">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -416,26 +469,21 @@
                 </svg>
             </button>
         </div>
-
-        <div class="flex items-center gap-3 group cursor-pointer" onclick="resetAnimation()">
-            <span class="text-xs sm:text-sm font-quicksand font-bold text-gray-500 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">reset</span>
+        <div class="flex items-center gap-3 group cursor-pointer pointer-events-auto" onclick="resetAnimation()">
+            <span class="text-xs sm:text-sm font-quicksand font-bold text-gray-500 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">Reset</span>
             <button id="restart-btn" class="p-3 sm:p-4 bg-white/90 backdrop-blur-md rounded-full shadow-xl text-pink-500 hover:bg-pink-100 hover:text-pink-600 hover:scale-110 transition-all duration-300 focus:outline-none" aria-label="Ulangi Animasi">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7 transform group-hover:-rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             </button>
         </div>
-        
     </div>
 
     <div id="pb-modal" class="fixed inset-0 bg-black/90 z-[60] opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto no-scrollbar">
-        
         <button id="pb-close" class="fixed top-4 right-4 z-[70] text-white hover:text-pink-400 p-2 bg-white/10 backdrop-blur-md rounded-full shadow-lg transition-all">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
 
         <div class="min-h-full w-full flex flex-col items-center justify-center py-16 px-4">
-            
             <div class="relative w-full max-w-sm flex flex-col items-center">
-                
                 <div id="pb-preview-container" class="relative w-full aspect-square bg-gray-900 rounded-lg overflow-hidden shadow-2xl border-4 border-white pb-flash-target">
                     <video id="pb-video" autoplay playsinline class="w-full h-full object-cover mirror-feed filter-normal"></video>
                     <div id="pb-countdown" class="absolute inset-0 flex items-center justify-center text-[120px] font-title font-bold text-white drop-shadow-[0_4px_10px_rgba(236,72,153,0.8)] opacity-0 pointer-events-none transition-opacity">3</div>
@@ -463,7 +511,6 @@
                     </button>
                 </div>
             </div>
-            
         </div>
     </div>
 
@@ -486,15 +533,13 @@
         const mouthRest = document.getElementById('mouth-rest'); const mouthNorm = document.getElementById('mouth-norm'); const mouthSurp = document.getElementById('mouth-surp'); const mouthWide = document.getElementById('mouth-wide');
         const sleepZzz = document.getElementById('sleep-zzz');
         
-        // Scenes Overlays
+        // Overlays & UI
         const introOverlay = document.getElementById('intro-overlay'); const nightSkyOverlay = document.getElementById('night-sky-overlay');
         const constellationPath = document.getElementById('constellation-path'); const shootingStar = document.getElementById('shooting-star'); const skyText = document.getElementById('sky-text');
         const countdownOverlay = document.getElementById('countdown-overlay'); const countdownSec = document.getElementById('countdown-sec'); const countdownClock = document.getElementById('countdown-clock'); const countdownText = document.getElementById('countdown-text');
         const calendarOverlay = document.getElementById('calendar-overlay'); const calMarker = document.getElementById('cal-marker'); const calSparkle = document.getElementById('cal-sparkle'); const calText = document.getElementById('cal-text');
         
         const mainScene = document.getElementById('main-scene'); const parallaxWrapper = document.getElementById('parallax-wrapper');
-        
-        // UI & Audio
         const dynamicIsland = document.getElementById('dynamic-island'); const btnPlay = document.getElementById('btn-play'); const btnPrev = document.getElementById('btn-prev'); const btnNext = document.getElementById('btn-next');
         const musicIconPath = document.getElementById('music-icon-path'); const visualizer = document.getElementById('visualizer'); const trackTitle = document.getElementById('track-title'); const trackArtist = document.getElementById('track-artist');
         const blowTooltip = document.getElementById('blow-tooltip'); 
@@ -504,7 +549,7 @@
         const canvas = document.getElementById('confetti-canvas'); const leftEye = document.getElementById('left-eye-pupil'); const rightEye = document.getElementById('right-eye-pupil');
         const ctx = canvas.getContext('2d'); const bgMusic = document.getElementById('bg-music');
 
-        const bdayText = "happy 21st birthday puspita!"; const wishText = "wish you all the best. be happy, always;)";
+        const bdayText = "happy 21st birthday puspita!"; const wishText = "wish you all the best. stay happy, stay loved, always;)";
         const svgPlay = "M8 5v14l11-7z"; const svgPause = "M6 19h4V5H6v14zm8-14v14h4V5h-4z"; 
         
         const playlist = [ { title: "21", artist: "Hunter Hayes", src: "music-2.mpeg" }, { title: "Have It All", artist: "Jason Mraz", src: "music-4.mpeg" }, { title: "New York City", artist: "Among Savages", src: "music-6.mpeg" } ];
@@ -546,8 +591,6 @@
             if(!isPlaying || interactionStage < 0) return; 
             const x = (clientX - window.innerWidth / 2); const y = (clientY - window.innerHeight / 2);
             const dampen = window.innerWidth < 768 ? 80 : 40; parallaxWrapper.style.transform = `translate(${x / dampen}px, ${y / dampen}px)`;
-            
-            // Pupil tracking (kecuali saat scene terkejut plot twist)
             if(interactionStage !== 6) {
                 const eyeX = (x / window.innerWidth) * 4.5; const eyeY = (y / window.innerHeight) * 4.5;
                 leftEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`; rightEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
@@ -555,6 +598,24 @@
         }
         document.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
         document.addEventListener('touchmove', (e) => handlePointerMove(e.touches[0].clientX, e.touches[0].clientY));
+
+        // ================= EASTER EGGS LISTENERS =================
+        document.getElementById('window-svg').addEventListener('click', () => {
+            const star = document.getElementById('win-star');
+            star.classList.remove('opacity-0'); star.classList.add('anim-window-star');
+            setTimeout(() => { star.classList.remove('anim-window-star'); star.classList.add('opacity-0'); }, 800);
+        });
+
+        document.getElementById('corkboard-svg').addEventListener('click', function() {
+            this.classList.remove('animate-wiggle');
+            void this.offsetWidth; // trigger reflow
+            this.classList.add('animate-wiggle');
+        });
+
+        document.getElementById('desk-lamp-svg').addEventListener('click', () => {
+            document.getElementById('lamp-light').classList.toggle('opacity-0');
+            document.getElementById('spotlight').classList.toggle('opacity-0');
+        });
 
         function createFireflies() {
             const container = document.getElementById('fireflies-container');
@@ -597,11 +658,15 @@
                 await typeWriter(wishText, textWishEl, 60, sequenceId);
                 if (currentSequence !== sequenceId) break;
                 
-                // Show Interactive Buttons Permanently Once Finished Typing
                 actionBtnCont.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
                 actionBtnCont.classList.add('opacity-100', 'translate-y-0');
 
-                await sleep(6000);
+                // Tampilkan Secret Letter (Ide 2)
+                const envelope = document.getElementById('secret-envelope');
+                envelope.classList.remove('opacity-0', 'translate-y-[200px]', 'pointer-events-none');
+                envelope.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto', 'anim-drop-bounce');
+
+                await sleep(7000);
 
                 await backspace(textWishEl, 30, sequenceId);
                 if (currentSequence !== sequenceId) break;
@@ -621,8 +686,7 @@
             await sleep(1500); constellationPath.classList.add('draw-line'); 
             await sleep(3500); skyText.classList.add('opacity-0');
             await sleep(800); shootingStar.classList.add('animate-shooting-star');
-            // skyText.textContent = "Sebuah doa tulus diterbangkan menembus waktu..."; skyText.classList.remove('opacity-0');
-            await sleep(3000); skyText.classList.add('opacity-0'); nightSkyOverlay.classList.add('opacity-0');
+            await sleep(3000); nightSkyOverlay.classList.add('opacity-0');
 
             interactionStage = -3; countdownOverlay.style.display = 'flex';
             setTimeout(() => { nightSkyOverlay.style.display = 'none'; countdownOverlay.classList.remove('opacity-0'); }, 1000);
@@ -641,6 +705,11 @@
             calendarOverlay.classList.remove('scale-100'); calendarOverlay.classList.add('scale-[4]', 'opacity-0'); 
 
             mainScene.classList.remove('opacity-0', 'pointer-events-none');
+            
+            // Terapkan Transisi Waktu (Ide 1)
+            document.getElementById('time-overlay').classList.remove('opacity-0');
+            document.getElementById('time-overlay').classList.add('opacity-80');
+            
             await sleep(1000); calendarOverlay.style.display = 'none';
             
             interactionStage = 0; setExpression('sleeping'); dynamicIsland.classList.remove('opacity-0');
@@ -651,6 +720,13 @@
             if (!isPlaying || interactionStage < 0) return;
 
             if (interactionStage === 0) { 
+                // Transisi Waktu dari Malam ke Pagi
+                document.getElementById('time-overlay').classList.remove('opacity-80');
+                document.getElementById('time-overlay').classList.add('opacity-0');
+                document.getElementById('win-moon').classList.add('translate-y-16', 'opacity-0');
+                document.getElementById('win-sun').classList.remove('translate-y-12', 'opacity-0');
+                document.getElementById('win-sun').classList.add('translate-y-0', 'opacity-100');
+                
                 setExpression('dizzy'); showTooltip("masi ngantuk kayanya, coba tap lg"); interactionStage = 1;
             } else if (interactionStage === 1) { 
                 setExpression('normal'); showTooltip("oke udh melek wkw skrg tap buat liat kejutannya"); interactionStage = 2;
@@ -674,21 +750,33 @@
 
                 await sleep(1500);
                 
-                // Show Floating Heads (Teman-teman)
+                // Show Floating Heads
                 document.querySelectorAll('.friend-pop').forEach(el => { el.classList.remove('scale-0', 'opacity-0'); el.classList.add('scale-100', 'opacity-100'); });
                 
-                // PLOT TWIST: Kaget melirik ke kiri
                 setExpression('surprised');
                 leftEye.style.transform = 'translate(-8px, -1px)'; rightEye.style.transform = 'translate(-8px, -1px)';
                 
                 setTimeout(() => { tooltipLeft.classList.remove('opacity-0'); tooltipRight.classList.remove('opacity-0'); }, 500);
 
-                // Setelah terkejut 2.5 detik, kembali senyum & wink 
                 await sleep(2500);
                 leftEye.style.transform = 'translate(0px, 0px)'; rightEye.style.transform = 'translate(0px, 0px)';
                 setExpression('happy-wink');
             }
         }
+
+        // ================= SECRET LETTER LOGIC =================
+        document.getElementById('secret-envelope').addEventListener('click', () => {
+            const modal = document.getElementById('letter-modal');
+            const content = document.getElementById('letter-content');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => { content.classList.remove('scale-90'); content.classList.add('scale-100'); }, 50);
+        });
+        document.getElementById('close-letter').addEventListener('click', () => {
+            const modal = document.getElementById('letter-modal');
+            const content = document.getElementById('letter-content');
+            content.classList.remove('scale-100'); content.classList.add('scale-90');
+            setTimeout(() => modal.classList.add('opacity-0', 'pointer-events-none'), 300);
+        });
 
         // ================= PHOTOBOOTH LOGIC =================
         const pbModal = document.getElementById('pb-modal'); const pbVideo = document.getElementById('pb-video');
@@ -817,15 +905,12 @@
             pbModal.classList.add('opacity-0', 'pointer-events-none');
             if(pbStream) pbStream.getTracks().forEach(t => t.stop());
             
-            // JIKA FOTO SUKSES TERCAPTURE
             if(capturedPhotos.length === 3) { 
-                // Tampilkan hasil mengambang di kanan dan kiri
-                document.getElementById('floating-pb-left').src = pbResultImg.src; 
-                document.getElementById('floating-pb-right').src = pbResultImg.src; 
+                document.getElementById('pb-left-img').src = pbResultImg.src; 
+                document.getElementById('pb-right-img').src = pbResultImg.src; 
                 document.getElementById('floating-pb-left').style.display = 'block'; 
                 document.getElementById('floating-pb-right').style.display = 'block'; 
 
-                // Sembunyikan teman-teman dan tooltips nya agar rapi
                 document.querySelectorAll('.friend-pop').forEach(el => { 
                     el.classList.add('scale-0', 'opacity-0'); 
                     el.classList.remove('scale-100', 'opacity-100'); 
@@ -857,9 +942,21 @@
             tooltipLeft.classList.add('opacity-0'); tooltipRight.classList.add('opacity-0');
             actionBtnCont.classList.remove('opacity-100', 'translate-y-0'); actionBtnCont.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
             
-            // Sembunyikan hasil photobooth
             document.getElementById('floating-pb-left').style.display = 'none';
             document.getElementById('floating-pb-right').style.display = 'none';
+            
+            const envelope = document.getElementById('secret-envelope');
+            envelope.classList.add('opacity-0', 'translate-y-[200px]', 'pointer-events-none');
+            envelope.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto', 'anim-drop-bounce');
+            document.getElementById('letter-modal').classList.add('opacity-0', 'pointer-events-none');
+
+            document.getElementById('time-overlay').classList.remove('opacity-0');
+            document.getElementById('time-overlay').classList.add('opacity-80');
+            document.getElementById('win-moon').classList.remove('translate-y-16', 'opacity-0');
+            document.getElementById('win-sun').classList.add('translate-y-12', 'opacity-0');
+            document.getElementById('win-sun').classList.remove('translate-y-0', 'opacity-100');
+            document.getElementById('lamp-light').classList.add('opacity-0');
+            document.getElementById('spotlight').classList.add('opacity-0');
 
             setExpression('sleeping'); hideTooltip();
             parallaxWrapper.style.transform = `translate(0px, 0px)`; leftEye.style.transform = `translate(0px, 0px)`; rightEye.style.transform = `translate(0px, 0px)`;
