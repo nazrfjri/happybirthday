@@ -74,12 +74,15 @@
         /* Photobooth Specifics */
         .pb-flash { animation: flash 0.3s ease-out; }
         @keyframes flash { 0% { background-color: white; opacity: 1; } 100% { background-color: white; opacity: 0; } }
+        
         .floating-photo {
-            position: absolute; z-index: 4; width: 120px; transform: rotate(10deg);
+            position: absolute; z-index: 4; display: none;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 4px; pointer-events: none;
-            animation: float-photo 6s ease-in-out infinite alternate; display: none;
         }
-        @keyframes float-photo { 0% { transform: translateY(0) rotate(5deg); } 100% { transform: translateY(-20px) rotate(-5deg); } }
+        .float-anim-1 { animation: float-1 6s ease-in-out infinite alternate; }
+        .float-anim-2 { animation: float-2 6s ease-in-out infinite alternate; animation-delay: -3s; }
+        @keyframes float-1 { 0% { transform: translateY(0) rotate(-10deg); } 100% { transform: translateY(-20px) rotate(-5deg); } }
+        @keyframes float-2 { 0% { transform: translateY(0) rotate(10deg); } 100% { transform: translateY(-20px) rotate(15deg); } }
         
         /* Video Mirroring & Filters */
         .mirror-feed { transform: scaleX(-1); }
@@ -93,7 +96,8 @@
 
     <audio id="bg-music" src="music-2.mpeg" preload="auto" loop></audio>
 
-    <img id="floating-photobooth" class="floating-photo top-[15%] left-[5%] md:left-[15%] w-[100px] md:w-[150px] border-4 border-white bg-white" src="" />
+    <img id="floating-pb-left" class="floating-photo float-anim-1 top-[15%] left-[5%] md:left-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white" src="" />
+    <img id="floating-pb-right" class="floating-photo float-anim-2 top-[20%] right-[5%] md:right-[12%] w-[90px] md:w-[130px] border-4 border-white bg-white" src="" />
 
     <div id="night-sky-overlay" class="fixed inset-0 z-40 bg-[#0B0F19] flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-1000" style="display: none;">
         <div id="shooting-star" class="shooting-star"></div>
@@ -503,7 +507,7 @@
         const bdayText = "happy 21st birthday puspita!"; const wishText = "wish you all the best. be happy, always;)";
         const svgPlay = "M8 5v14l11-7z"; const svgPause = "M6 19h4V5H6v14zm8-14v14h4V5h-4z"; 
         
-        const playlist = [ { title: "21", artist: "Hunter Hayes", src: "music-2.mpeg" }, { title: "Have It All", artist: "Jason Mraz", src: "music-4.mpeg" }, { title: "Birthday", artist: "Sufjan Stevens", src: "music.mpeg" } ];
+        const playlist = [ { title: "21", artist: "Hunter Hayes", src: "music-2.mpeg" }, { title: "Have It All", artist: "Jason Mraz", src: "music-4.mpeg" }, { title: "New York City", artist: "Among Savages", src: "music-6.mpeg" } ];
         let currentSongIndex = 0; let isPlaying = false; let interactionStage = -4; let currentSequence = 0; 
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -812,7 +816,23 @@
         function closePhotobooth() {
             pbModal.classList.add('opacity-0', 'pointer-events-none');
             if(pbStream) pbStream.getTracks().forEach(t => t.stop());
-            if(capturedPhotos.length === 3) { document.getElementById('floating-photobooth').src = pbResultImg.src; document.getElementById('floating-photobooth').style.display = 'block'; }
+            
+            // JIKA FOTO SUKSES TERCAPTURE
+            if(capturedPhotos.length === 3) { 
+                // Tampilkan hasil mengambang di kanan dan kiri
+                document.getElementById('floating-pb-left').src = pbResultImg.src; 
+                document.getElementById('floating-pb-right').src = pbResultImg.src; 
+                document.getElementById('floating-pb-left').style.display = 'block'; 
+                document.getElementById('floating-pb-right').style.display = 'block'; 
+
+                // Sembunyikan teman-teman dan tooltips nya agar rapi
+                document.querySelectorAll('.friend-pop').forEach(el => { 
+                    el.classList.add('scale-0', 'opacity-0'); 
+                    el.classList.remove('scale-100', 'opacity-100'); 
+                });
+                tooltipLeft.classList.add('opacity-0'); 
+                tooltipRight.classList.add('opacity-0');
+            }
         }
         document.getElementById('pb-close').addEventListener('click', closePhotobooth);
 
@@ -836,7 +856,10 @@
             document.querySelectorAll('.friend-pop').forEach(el => { el.classList.add('scale-0', 'opacity-0'); el.classList.remove('scale-100', 'opacity-100'); });
             tooltipLeft.classList.add('opacity-0'); tooltipRight.classList.add('opacity-0');
             actionBtnCont.classList.remove('opacity-100', 'translate-y-0'); actionBtnCont.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-            document.getElementById('floating-photobooth').style.display = 'none';
+            
+            // Sembunyikan hasil photobooth
+            document.getElementById('floating-pb-left').style.display = 'none';
+            document.getElementById('floating-pb-right').style.display = 'none';
 
             setExpression('sleeping'); hideTooltip();
             parallaxWrapper.style.transform = `translate(0px, 0px)`; leftEye.style.transform = `translate(0px, 0px)`; rightEye.style.transform = `translate(0px, 0px)`;
