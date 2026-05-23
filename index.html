@@ -128,7 +128,7 @@
 
     <div id="calendar-overlay" class="fixed inset-0 z-30 flex flex-col items-center justify-center pointer-events-none opacity-0 scale-90 overlay-transition" style="display: none;">
         <p id="cal-text" class="font-quicksand font-bold text-lg md:text-2xl text-purple-700 tracking-wide opacity-0 transition-opacity duration-700 mb-8 z-10 bg-white/60 px-6 py-2 rounded-full backdrop-blur-sm">
-            <!-- Mari kita intip kamarnya... ✨ -->
+            🎉
         </p>
         <div class="relative drop-shadow-2xl">
             <svg viewBox="0 0 240 260" class="w-64 sm:w-80 md:w-96 h-auto">
@@ -574,10 +574,10 @@
             if (interactionStage === 0) { 
                 setExpression('dizzy'); showTooltip("masi blm kumpul nyawa nya wkw tap lg coba!"); interactionStage = 1;
             } else if (interactionStage === 1) { 
-                setExpression('normal'); showTooltip("nah sudah seger kan.. skrg tap buat panggil kado kejutannya!"); interactionStage = 2;
+                setExpression('normal'); showTooltip("nah udh seger kan.. skrg tap buat panggil kue nya!"); interactionStage = 2;
             } else if (interactionStage === 2) { 
                 cakeGroup.style.transform = 'translateY(0px)'; cakeGroup.style.opacity = '1'; setExpression('surprised');
-                showTooltip("tap lg buat nyalain lilin nya ya"); interactionStage = 3;
+                showTooltip("nyalain lilin nya ya"); interactionStage = 3;
             } else if (interactionStage === 3) { 
                 setExpression('normal'); flame.classList.remove('opacity-0'); flame.classList.add('animate-flicker');
                 showTooltip("make a wish.."); interactionStage = 4;
@@ -634,7 +634,7 @@
 
             nightSkyOverlay.style.display = 'none'; nightSkyOverlay.classList.remove('opacity-100', 'opacity-0');
             constellationPath.classList.remove('draw-line'); shootingStar.classList.remove('animate-shooting-star');
-            skyText.textContent = "Di bawah rasi bintang Gemini yang bersinar..."; skyText.classList.add('opacity-0');
+            // skyText.textContent = "Di bawah rasi bintang Gemini yang bersinar..."; skyText.classList.add('opacity-0');
 
             cakeGroup.style.transform = 'translateY(-150px)'; cakeGroup.style.opacity = '0'; flame.classList.remove('flame-blown'); flame.classList.add('opacity-0'); flame.classList.remove('animate-flicker'); smoke1.classList.remove('animate-smoke'); smoke2.classList.remove('animate-smoke'); sparkles.classList.add('opacity-0');
             
