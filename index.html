@@ -40,6 +40,10 @@
         .animate-float-bg-delayed { animation: float-bg 12s ease-in-out infinite 2.5s; }
         .animate-float-bg-slow { animation: float-bg 14s ease-in-out infinite 1s; }
 
+        /* Eyes Blink */
+        @keyframes blink { 0%, 94%, 98%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.05); } }
+        .eye { transform-origin: center 85px; animation: blink 5s infinite; }
+
         /* Flame & Asap Physics */
         @keyframes flicker { 0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 10px #FFB703); } 50% { transform: scale(0.9) rotate(2deg); filter: drop-shadow(0 0 15px #FFB703); } }
         .animate-flicker { animation: flicker 0.5s infinite alternate; transform-origin: bottom center; }
@@ -105,7 +109,7 @@
         </svg>
         <div class="z-10 text-center px-6 mt-32">
             <p id="sky-text" class="font-quicksand font-bold text-lg md:text-2xl text-indigo-100 tracking-wide opacity-0 transition-opacity duration-1000 leading-relaxed drop-shadow-md">
-                <!-- dibawah rasi bintang gemini... -->
+                <!-- Di bawah rasi bintang Gemini yang bersinar... -->
             </p>
         </div>
     </div>
@@ -175,105 +179,11 @@
             
             <div id="parallax-wrapper" class="relative w-full flex justify-center mb-2 sm:mb-4 drop-shadow-2xl transition-transform duration-200 ease-out cursor-pointer group">
                 
-                <div id="friends-left" class="absolute -left-16 sm:-left-32 bottom-0 w-[240px] sm:w-[300px] h-auto opacity-0 transform -translate-x-12 transition-all duration-1000 z-20 pointer-events-none flex flex-col items-center">
-                    
-                    <div class="absolute -top-12 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 friends-speech opacity-0 transition-opacity duration-300 z-30">
-                        SURPRISE!! 🥳🎉
-                    </div>
-
-                    <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-xl">
-                        <g transform="translate(10, 50)">
-                            <path d="M 15 110 Q 45 100 75 110 L 85 180 L 5 180 Z" fill="#8B5A2B"/>
-                            <path d="M 35 110 L 50 125 L 65 110 Z" fill="#1A1A1A"/>
-                            <rect x="40" y="85" width="20" height="30" fill="#F4D0B5"/>
-                            <path d="M 25 45 Q 20 90 50 105 Q 80 90 75 45 Z" fill="#FCE4D6"/>
-                            <path d="M 20 45 C 20 20, 30 10, 50 10 C 70 10, 80 20, 80 45 C 80 35, 70 20, 50 20 C 30 20, 20 35, 20 45 Z" fill="#222"/>
-                            <circle cx="35" cy="65" r="3" fill="#111"/> <circle cx="65" cy="65" r="3" fill="#111"/>
-                            <path d="M 30 55 Q 35 52 40 55" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M 60 55 Q 65 52 70 55" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M 50 75 Q 52 79 54 75" fill="none" stroke="#DCA293" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 40 88 Q 50 95 60 88" fill="none" stroke="#A65D57" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-
-                        <g transform="translate(90, 40)">
-                            <path d="M 15 110 Q 50 100 85 110 L 95 180 L 5 180 Z" fill="#4A90E2"/>
-                            <path d="M 35 110 L 50 125 L 65 110 Z" fill="#E2E8F0"/>
-                            <rect x="40" y="85" width="20" height="30" fill="#F4D0B5"/>
-                            <path d="M 25 45 Q 20 90 50 105 Q 80 90 75 45 Z" fill="#FCE4D6"/>
-                            <path d="M 15 45 C 15 15, 30 5, 50 5 C 70 5, 85 15, 85 45 C 85 30, 70 15, 50 15 C 30 15, 15 30, 15 45 Z" fill="#222"/>
-                            <rect x="25" y="55" width="20" height="15" rx="3" fill="none" stroke="#111" stroke-width="2"/>
-                            <rect x="55" y="55" width="20" height="15" rx="3" fill="none" stroke="#111" stroke-width="2"/>
-                            <line x1="45" y1="62" x2="55" y2="62" stroke="#111" stroke-width="2"/>
-                            <circle cx="35" cy="62" r="2.5" fill="#111"/> <circle cx="65" cy="62" r="2.5" fill="#111"/>
-                            <path d="M 50 78 Q 52 82 54 78" fill="none" stroke="#DCA293" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 40 90 Q 50 97 60 90" fill="none" stroke="#A65D57" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-
-                        <g transform="translate(170, 30)">
-                            <path d="M 15 110 Q 50 100 85 110 L 95 180 L 5 180 Z" fill="#1A1A1A"/>
-                            <path d="M 35 110 L 50 125 L 65 110 Z" fill="#0A0A0A"/>
-                            <rect x="40" y="85" width="20" height="30" fill="#F4D0B5"/>
-                            <path d="M 25 45 Q 20 90 50 105 Q 80 90 75 45 Z" fill="#FCE4D6"/>
-                            <path d="M 50 10 C 15 10, 10 45, 15 65 C 20 40, 35 30, 48 30 L 50 30 C 65 30, 80 40, 85 65 C 90 45, 85 10, 50 10 Z" fill="#111"/>
-                            <circle cx="35" cy="65" r="3" fill="#111"/> <circle cx="65" cy="65" r="3" fill="#111"/>
-                            <path d="M 28 55 Q 35 52 42 55" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"/> <path d="M 58 55 Q 65 52 72 55" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
-                            <path d="M 50 78 Q 52 82 54 78" fill="none" stroke="#DCA293" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 40 92 Q 50 100 60 92" fill="none" stroke="#A65D57" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-                    </svg>
+                <div id="tooltip-left" class="absolute -left-4 sm:-left-12 -top-6 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 opacity-0 transition-opacity duration-300 z-30 pointer-events-none">
+                    SURPRISE!!
                 </div>
-
-                <div id="friends-right" class="absolute -right-12 sm:-right-24 bottom-0 w-[160px] sm:w-[200px] h-auto opacity-0 transform translate-x-12 transition-all duration-1000 z-20 pointer-events-none flex flex-col items-center">
-                    
-                    <div class="absolute -top-12 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 friends-speech opacity-0 transition-opacity duration-300 z-30" style="animation-delay: 0.2s">
-                        HBD Puspi! 🎈
-                    </div>
-
-                    <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-xl">
-                        <g transform="translate(10, 40)">
-                            <path d="M 15 110 Q 50 100 85 110 L 95 180 L 5 180 Z" fill="#151515"/>
-                            <path d="M 50 10 C 20 10, 10 30, 10 70 C 10 110, 20 150, 50 150 C 80 150, 90 110, 90 70 C 90 30, 80 10, 50 10 Z" fill="#1A1A1A"/>
-                            <path d="M 25 50 Q 20 90 50 100 Q 80 90 75 50 Z" fill="#FCE4D6"/>
-                            <path d="M 25 45 Q 50 35 75 45 Q 70 25 50 25 Q 30 25 25 45 Z" fill="#0A0A0A"/>
-                            <path d="M 10 70 Q 30 110 50 115 Q 70 110 90 70 L 95 130 Q 50 150 5 130 Z" fill="#222"/>
-                            <circle cx="35" cy="65" r="3.5" fill="#111"/> <circle cx="65" cy="65" r="3.5" fill="#111"/>
-                            <circle cx="35" cy="65" r="12" fill="none" stroke="#333" stroke-width="1.5"/> <circle cx="65" cy="65" r="12" fill="none" stroke="#333" stroke-width="1.5"/>
-                            <line x1="47" y1="65" x2="53" y2="65" stroke="#333" stroke-width="1.5"/>
-                            <line x1="23" y1="65" x2="15" y2="60" stroke="#333" stroke-width="1.5"/> <line x1="77" y1="65" x2="85" y2="60" stroke="#333" stroke-width="1.5"/>
-                            <path d="M 50 78 Q 52 82 54 78" fill="none" stroke="#DCA293" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 42 88 Q 50 95 58 88" fill="none" stroke="#A65D57" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-                        <g transform="translate(90, 30)">
-                            <path d="M 15 110 Q 45 100 75 110 L 85 180 L 5 180 Z" fill="#6A4B3A"/>
-                            <path d="M 45 10 C 20 10, 10 30, 10 70 C 10 110, 20 150, 45 150 C 70 150, 80 110, 80 70 C 80 30, 70 10, 45 10 Z" fill="#8B6B53"/>
-                            <path d="M 25 50 Q 20 90 45 100 Q 70 90 65 50 Z" fill="#F4D0B5"/>
-                            <path d="M 25 45 Q 45 35 65 45 Q 60 25 45 25 Q 30 25 25 45 Z" fill="#5A3A2A"/>
-                            <path d="M 10 70 Q 30 110 45 115 Q 60 110 80 70 L 85 130 Q 45 150 5 130 Z" fill="#A07D65"/>
-                            <circle cx="35" cy="65" r="3" fill="#222"/> <circle cx="55" cy="65" r="3" fill="#222"/>
-                            <path d="M 30 55 Q 35 52 40 55" fill="none" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M 50 55 Q 55 52 60 55" fill="none" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M 45 75 Q 47 78 49 75" fill="none" stroke="#DCA293" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 38 85 Q 45 92 52 85" fill="none" stroke="#A65D57" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-                    </svg>
-                </div>
-
-                <div class="absolute z-30 -top-24 sm:-top-28 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none w-[320px]">
-                    <div id="dynamic-island" class="pointer-events-auto flex items-center justify-center gap-2 sm:gap-3 bg-black/85 backdrop-blur-md pl-2 pr-4 py-1.5 rounded-full shadow-lg text-white font-quicksand mb-3 opacity-0 transition-opacity duration-500 w-auto inline-flex">
-                        <button id="btn-prev" class="p-1 hover:bg-white/20 rounded-full transition-colors"><svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
-                        <div id="btn-play" class="bg-pink-500 hover:bg-pink-400 rounded-full p-1.5 flex items-center justify-center cursor-pointer transition-colors"><svg id="music-icon" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path id="music-icon-path" d="M8 5v14l11-7z"/></svg></div>
-                        <button id="btn-next" class="p-1 hover:bg-white/20 rounded-full transition-colors"><svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
-                        <div class="flex flex-col min-w-[75px] ml-1">
-                            <span id="track-title" class="font-bold text-xs sm:text-sm text-pink-300 leading-tight truncate max-w-[80px]">21</span>
-                            <span id="track-artist" class="text-[9px] sm:text-[10px] text-gray-300 leading-tight truncate max-w-[80px]">Hunter Hayes</span>
-                        </div>
-                        <div id="visualizer" class="flex items-end gap-[2px] h-4 ml-1">
-                            <div class="visualizer-bar bar1"></div> <div class="visualizer-bar bar2"></div> <div class="visualizer-bar bar3"></div>
-                        </div>
-                    </div>
-                    <div id="blow-tooltip" class="bg-white/95 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-300 text-center mx-auto" style="min-width: 280px;">
-                        ceritanya lg ketiduran nungguin ultahnya.. tap pelan" buat bangunin deh
-                    </div>
+                <div id="tooltip-right" class="absolute -right-4 sm:-right-8 top-0 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-2xl shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm animate-bounce w-max border-2 border-pink-100 opacity-0 transition-opacity duration-300 z-30 pointer-events-none" style="animation-delay: 0.2s">
+                    HBD Puspi!
                 </div>
 
                 <div class="animate-float" id="character-container">
@@ -390,8 +300,75 @@
                             <path class="sparkle-anim" d="M 40 50 L 44 38 L 56 34 L 44 30 L 40 18 L 36 30 L 24 34 L 36 38 Z" fill="#FDE047" style="animation-delay: 0s;"/>
                             <path class="sparkle-anim" d="M 220 60 L 223 51 L 232 48 L 223 45 L 220 36 L 217 45 L 208 48 L 217 51 Z" fill="#FDE047" style="animation-delay: 0.3s;"/>
                         </g>
+
+                        <g id="friends-group" class="pointer-events-none">
+                            <g id="friend-guy1" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 30px 90px;">
+                                <g class="animate-float" style="animation-delay: 0.2s">
+                                    <path d="M 15 115 Q 30 95 45 115 Z" fill="#4A90E2"/> <path d="M 17 80 Q 17 105 30 110 Q 43 105 43 80 Z" fill="#FCE4D6"/> <path d="M 15 85 C 15 65 45 65 45 85 C 45 70 30 70 15 85 Z" fill="#222"/> <rect x="21" y="87" width="7" height="5" rx="1" fill="none" stroke="#222" stroke-width="1.5"/> <rect x="32" y="87" width="7" height="5" rx="1" fill="none" stroke="#222" stroke-width="1.5"/>
+                                    <line x1="28" y1="89" x2="32" y2="89" stroke="#222" stroke-width="1.5"/>
+                                    <circle cx="24.5" cy="89.5" r="1.5" fill="#222"/> <circle cx="35.5" cy="89.5" r="1.5" fill="#222"/>
+                                    <path d="M 26 100 Q 30 104 34 100" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
+                                </g>
+                            </g>
+
+                            <g id="friend-guy2" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 55px 130px;">
+                                <g class="animate-float" style="animation-delay: 0.5s">
+                                    <path d="M 40 155 Q 55 135 70 155 Z" fill="#1A1A1A"/> <path d="M 42 120 Q 42 145 55 150 Q 68 145 68 120 Z" fill="#FCE4D6"/> <path d="M 55 110 C 40 110 38 128 42 128 C 45 118 52 118 54 113 L 55 113 C 58 118 65 118 68 128 C 72 128 70 110 55 110 Z" fill="#111"/>
+                                    <circle cx="50" cy="130" r="1.5" fill="#111"/> <circle cx="60" cy="130" r="1.5" fill="#111"/>
+                                    <path d="M 47 125 Q 50 123 53 125" fill="none" stroke="#111" stroke-width="1.5"/>
+                                    <path d="M 57 125 Q 60 123 63 125" fill="none" stroke="#111" stroke-width="1.5"/>
+                                    <path d="M 51 140 Q 55 144 59 140" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
+                                </g>
+                            </g>
+
+                            <g id="friend-guy3" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 25px 165px;">
+                                <g class="animate-float" style="animation-delay: 0.8s">
+                                    <path d="M 10 190 Q 25 170 40 190 Z" fill="#8B5A2B"/> <path d="M 20 190 L 25 182 L 30 190 Z" fill="#111"/> <path d="M 12 155 Q 12 180 25 185 Q 38 180 38 155 Z" fill="#F4D0B5"/> <path d="M 10 160 C 10 140 40 140 40 160 C 40 150 35 145 25 145 C 15 145 10 150 10 160 Z" fill="#222"/> <circle cx="20" cy="165" r="1.5" fill="#111"/> <circle cx="30" cy="165" r="1.5" fill="#111"/>
+                                    <path d="M 21 175 Q 25 179 29 175" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
+                                </g>
+                            </g>
+
+                            <g id="friend-girl1" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 220px 100px;">
+                                <g class="animate-float" style="animation-delay: 0.3s">
+                                    <path d="M 205 125 Q 220 105 235 125 Z" fill="#151515"/> <path d="M 205 90 C 205 70 235 70 235 90 C 235 110 235 125 220 125 C 205 125 205 110 205 90 Z" fill="#111"/> <path d="M 210 90 Q 210 110 220 115 Q 230 110 230 90 Z" fill="#FCE4D6"/> <path d="M 205 100 Q 220 120 235 100 L 235 125 Q 220 135 205 125 Z" fill="#222"/> <circle cx="215" cy="98" r="4" fill="none" stroke="#333" stroke-width="1"/> <circle cx="225" cy="98" r="4" fill="none" stroke="#333" stroke-width="1"/>
+                                    <line x1="219" y1="98" x2="221" y2="98" stroke="#333" stroke-width="1"/>
+                                    <circle cx="215" cy="98" r="1.5" fill="#111"/> <circle cx="225" cy="98" r="1.5" fill="#111"/>
+                                    <path d="M 217 107 Q 220 111 223 107" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
+                                </g>
+                            </g>
+
+                            <g id="friend-girl2" class="friend-pop scale-0 opacity-0 transition-all duration-700" style="transform-origin: 235px 145px;">
+                                <g class="animate-float" style="animation-delay: 0.6s">
+                                    <path d="M 220 170 Q 235 150 250 170 Z" fill="#6A4B3A"/>
+                                    <path d="M 220 135 C 220 115 250 115 250 135 C 250 155 250 170 235 170 C 220 170 220 155 220 135 Z" fill="#8B6B53"/>
+                                    <path d="M 225 135 Q 225 155 235 160 Q 245 155 245 135 Z" fill="#F4D0B5"/>
+                                    <path d="M 220 145 Q 235 165 250 145 L 250 170 Q 235 180 220 170 Z" fill="#A07D65"/>
+                                    <circle cx="231" cy="143" r="1.5" fill="#111"/> <circle cx="239" cy="143" r="1.5" fill="#111"/>
+                                    <path d="M 233 152 Q 235 156 237 152" fill="none" stroke="#A65D57" stroke-width="1.5" stroke-linecap="round"/>
+                                </g>
+                            </g>
+                        </g>
                     </svg>
                 </div>
+
+                <div class="absolute z-30 -top-24 sm:-top-28 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none w-[320px]">
+                    <div id="dynamic-island" class="pointer-events-auto flex items-center justify-center gap-2 sm:gap-3 bg-black/85 backdrop-blur-md pl-2 pr-4 py-1.5 rounded-full shadow-lg text-white font-quicksand mb-3 opacity-0 transition-opacity duration-500 w-auto inline-flex">
+                        <button id="btn-prev" class="p-1 hover:bg-white/20 rounded-full transition-colors"><svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+                        <div id="btn-play" class="bg-pink-500 hover:bg-pink-400 rounded-full p-1.5 flex items-center justify-center cursor-pointer transition-colors"><svg id="music-icon" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path id="music-icon-path" d="M8 5v14l11-7z"/></svg></div>
+                        <button id="btn-next" class="p-1 hover:bg-white/20 rounded-full transition-colors"><svg class="w-3.5 h-3.5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+                        <div class="flex flex-col min-w-[75px] ml-1">
+                            <span id="track-title" class="font-bold text-xs sm:text-sm text-pink-300 leading-tight truncate max-w-[80px]">21</span>
+                            <span id="track-artist" class="text-[9px] sm:text-[10px] text-gray-300 leading-tight truncate max-w-[80px]">Hunter Hayes</span>
+                        </div>
+                        <div id="visualizer" class="flex items-end gap-[2px] h-4 ml-1">
+                            <div class="visualizer-bar bar1"></div> <div class="visualizer-bar bar2"></div> <div class="visualizer-bar bar3"></div>
+                        </div>
+                    </div>
+                    <div id="blow-tooltip" class="bg-white/95 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-300 text-center mx-auto" style="min-width: 280px;">
+                        ceritanya lg ketiduran nungguin ultahnya.. tap pelan-pelan deh
+                    </div>
+                </div>
+
             </div>
 
             <div class="text-center w-full min-h-[160px] sm:min-h-[180px] z-20 flex flex-col items-center px-2 mt-4">
@@ -412,7 +389,7 @@
     <div id="intro-overlay" class="absolute inset-0 bg-white/30 backdrop-blur-md z-50 flex items-center justify-center cursor-pointer overlay-transition">
         <div class="bg-white/80 backdrop-blur-lg border border-white/50 p-5 sm:p-8 rounded-3xl shadow-2xl animate-breathe text-center w-[90%] max-w-sm transform transition-transform hover:scale-105">
             <h2 class="font-title text-xl sm:text-2xl text-pink-600 mb-2">open it..</h2>
-            <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">*music nya bisa di ganti-ganti kok hehe</p>
+            <p class="font-quicksand font-bold text-gray-600 text-base sm:text-lg">*music nya bisa diganti ganti kok hehe</p>
         </div>
     </div>
 
@@ -422,22 +399,26 @@
         const cakeGroup = document.getElementById('cake-group'); const flame = document.getElementById('flame');
         const smoke1 = document.getElementById('smoke1'); const smoke2 = document.getElementById('smoke2'); const sparkles = document.getElementById('sparkles');
         
+        // Expressions
         const leNorm = document.getElementById('le-norm'); const leSurp = document.getElementById('le-surp'); const leClos = document.getElementById('le-clos'); const leDizzy = document.getElementById('le-dizzy');
         const reNorm = document.getElementById('re-norm'); const reSurp = document.getElementById('re-surp'); const reClos = document.getElementById('re-clos'); const reWink = document.getElementById('re-wink'); const reDizzy = document.getElementById('re-dizzy');
         const mouthRest = document.getElementById('mouth-rest'); const mouthNorm = document.getElementById('mouth-norm'); const mouthSurp = document.getElementById('mouth-surp'); const mouthWide = document.getElementById('mouth-wide');
         const sleepZzz = document.getElementById('sleep-zzz');
         
-        const friendsLeft = document.getElementById('friends-left'); const friendsRight = document.getElementById('friends-right');
+        // Scenes Overlays
         const introOverlay = document.getElementById('intro-overlay'); const nightSkyOverlay = document.getElementById('night-sky-overlay');
         const constellationPath = document.getElementById('constellation-path'); const shootingStar = document.getElementById('shooting-star'); const skyText = document.getElementById('sky-text');
         const countdownOverlay = document.getElementById('countdown-overlay'); const countdownSec = document.getElementById('countdown-sec'); const countdownClock = document.getElementById('countdown-clock'); const countdownText = document.getElementById('countdown-text');
         const calendarOverlay = document.getElementById('calendar-overlay'); const calMarker = document.getElementById('cal-marker'); const calSparkle = document.getElementById('cal-sparkle'); const calText = document.getElementById('cal-text');
         
         const mainScene = document.getElementById('main-scene'); const parallaxWrapper = document.getElementById('parallax-wrapper');
+        
+        // UI & Audio
         const dynamicIsland = document.getElementById('dynamic-island'); const btnPlay = document.getElementById('btn-play'); const btnPrev = document.getElementById('btn-prev'); const btnNext = document.getElementById('btn-next');
         const musicIconPath = document.getElementById('music-icon-path'); const visualizer = document.getElementById('visualizer'); const trackTitle = document.getElementById('track-title'); const trackArtist = document.getElementById('track-artist');
-        
         const blowTooltip = document.getElementById('blow-tooltip'); const restartBtn = document.getElementById('restart-btn');
+        const tooltipLeft = document.getElementById('tooltip-left'); const tooltipRight = document.getElementById('tooltip-right');
+        
         const canvas = document.getElementById('confetti-canvas'); const leftEye = document.getElementById('left-eye-pupil'); const rightEye = document.getElementById('right-eye-pupil');
         const ctx = canvas.getContext('2d'); const bgMusic = document.getElementById('bg-music');
 
@@ -484,7 +465,7 @@
             const x = (clientX - window.innerWidth / 2); const y = (clientY - window.innerHeight / 2);
             const dampen = window.innerWidth < 768 ? 80 : 40; parallaxWrapper.style.transform = `translate(${x / dampen}px, ${y / dampen}px)`;
             
-            // Pupil mata normal tracking (kecuali saat scene terkejut akhir)
+            // Pupil tracking
             if(interactionStage !== 6) {
                 const eyeX = (x / window.innerWidth) * 4.5; const eyeY = (y / window.innerHeight) * 4.5;
                 leftEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`; rightEye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
@@ -610,20 +591,26 @@
 
                 setExpression('happy-wink'); sparkles.classList.remove('opacity-0');
                 await sleep(800); startConfetti();
+
                 currentSequence++; startAnimationLoop(currentSequence);
 
-                await sleep(2000);
+                await sleep(1500);
                 
-                // Teman Slide In
-                friendsLeft.classList.remove('opacity-0', '-translate-x-12'); friendsLeft.classList.add('opacity-100', 'translate-x-0');
-                friendsRight.classList.remove('opacity-0', 'translate-x-12'); friendsRight.classList.add('opacity-100', 'translate-x-0');
+                // Show Floating Heads
+                document.querySelectorAll('.friend-pop').forEach(el => {
+                    el.classList.remove('scale-0', 'opacity-0');
+                    el.classList.add('scale-100', 'opacity-100');
+                });
                 
-                // PLOT TWIST: Kaget melihat ke teman cowok di kiri
+                // PlOT TWIST: Kaget melirik ke kiri
                 setExpression('surprised');
                 leftEye.style.transform = 'translate(-8px, -1px)';
                 rightEye.style.transform = 'translate(-8px, -1px)';
                 
-                setTimeout(() => { document.querySelectorAll('.friends-speech').forEach(el => el.classList.remove('opacity-0')); }, 500);
+                setTimeout(() => { 
+                    tooltipLeft.classList.remove('opacity-0');
+                    tooltipRight.classList.remove('opacity-0');
+                }, 500);
 
                 // Setelah terkejut, kembali senyum & wink 
                 await sleep(2500);
@@ -651,9 +638,11 @@
 
             cakeGroup.style.transform = 'translateY(-150px)'; cakeGroup.style.opacity = '0'; flame.classList.remove('flame-blown'); flame.classList.add('opacity-0'); flame.classList.remove('animate-flicker'); smoke1.classList.remove('animate-smoke'); smoke2.classList.remove('animate-smoke'); sparkles.classList.add('opacity-0');
             
-            friendsLeft.classList.add('opacity-0', '-translate-x-12'); friendsLeft.classList.remove('opacity-100', 'translate-x-0');
-            friendsRight.classList.add('opacity-0', 'translate-x-12'); friendsRight.classList.remove('opacity-100', 'translate-x-0');
-            document.querySelectorAll('.friends-speech').forEach(el => el.classList.add('opacity-0'));
+            document.querySelectorAll('.friend-pop').forEach(el => {
+                el.classList.add('scale-0', 'opacity-0');
+                el.classList.remove('scale-100', 'opacity-100');
+            });
+            tooltipLeft.classList.add('opacity-0'); tooltipRight.classList.add('opacity-0');
 
             setExpression('sleeping'); hideTooltip();
 
