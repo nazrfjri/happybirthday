@@ -388,7 +388,7 @@
                         </div>
                     </div>
                     <div id="blow-tooltip" class="bg-white/95 backdrop-blur-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-lg text-pink-500 font-quicksand font-bold text-xs sm:text-sm md:text-base animate-bounce opacity-0 transition-opacity duration-300 text-center mx-auto" style="min-width: 280px;">
-                        ceritanya lg ketiduran nungguin ultahnya.. tap pelan-pelan deh
+                        dia ketiduran nunggu jam 12.. tap pelan-pelan deh
                     </div>
                 </div>
 
@@ -644,19 +644,19 @@
             await sleep(1000); calendarOverlay.style.display = 'none';
             
             interactionStage = 0; setExpression('sleeping'); dynamicIsland.classList.remove('opacity-0');
-            showTooltip("ceritanya lg ketiduran nungguin ultahnya.. tap pelan-pelan deh");
+            showTooltip("dia ketiduran nunggu jam 12.. tap pelan-pelan deh");
         }
 
         async function handleAvatarInteraction() {
             if (!isPlaying || interactionStage < 0) return;
 
             if (interactionStage === 0) { 
-                setExpression('dizzy'); showTooltip("masi blm kumpul nyawa nya wkw tap lg coba"); interactionStage = 1;
+                setExpression('dizzy'); showTooltip("masi ngantuk kayanya, coba tap lg"); interactionStage = 1;
             } else if (interactionStage === 1) { 
-                setExpression('normal'); showTooltip("nah udh seger kan.. skrg tap buat panggil kejutannya!"); interactionStage = 2;
+                setExpression('normal'); showTooltip("oke udh melek wkw skrg tap buat liat kejutannya"); interactionStage = 2;
             } else if (interactionStage === 2) { 
                 cakeGroup.style.transform = 'translateY(0px)'; cakeGroup.style.opacity = '1'; setExpression('surprised');
-                showTooltip("nyalain lilin nya ya"); interactionStage = 3;
+                showTooltip("coba nyalain lilinnya dulu"); interactionStage = 3;
             } else if (interactionStage === 3) { 
                 setExpression('normal'); flame.classList.remove('opacity-0'); flame.classList.add('animate-flicker');
                 showTooltip("make a wish.."); interactionStage = 4;
