@@ -1025,6 +1025,9 @@
             } else if (interactionStage === 2) { 
                 cakeGroup.style.transform = 'translateY(0px)'; cakeGroup.style.opacity = '1'; setExpression('surprised');
                 showTooltip("coba nyalain lilinnya dulu"); interactionStage = 3;
+            } else if (interactionStage === 3) { 
+                setExpression('normal'); flame.classList.remove('opacity-0'); flame.classList.add('animate-flicker');
+                showTooltip("make a wish.. (tap lagi kalau udah)"); interactionStage = 4;
 
                 // Spawn Party Spark
                 partySpark.classList.remove('hidden');
@@ -1032,10 +1035,7 @@
                     partySpark.classList.remove('opacity-0', 'scale-0');
                     sparkInterval = setInterval(moveSpark, 1500);
                 }, 1000);
-
-            } else if (interactionStage === 3) { 
-                setExpression('normal'); flame.classList.remove('opacity-0'); flame.classList.add('animate-flicker');
-                showTooltip("make a wish.. (tap lagi kalau udah)"); interactionStage = 4;
+                
             } else if (interactionStage === 4) { 
                 setExpression('wishing'); 
                 showTooltip("ready? hembusin nafas halusss aja ke mic kamu 🌬️ (atau tap kalau gabisa)");
