@@ -20,6 +20,17 @@
         body { background: linear-gradient(-45deg, #fce4ec, #f3e5f5, #fff0f5, #e8eaf6); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        #room-party-bg {
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Transisi 2 detik */
+            background: radial-gradient(circle, #fbcfe8, #d8b4fe);
+            pointer-events: none; /* Penting agar tidak menghalangi klik */
+        }
+
+        #room-party-bg.show {
+            opacity: 1;
+        }
+
         /* General Animations */
         @keyframes breathe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.01); } }
         .animate-breathe { animation: breathe 4s ease-in-out infinite; transform-origin: bottom center; }
@@ -231,6 +242,7 @@
         <div id="spotlight" class="absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none z-[1]" style="background: radial-gradient(circle at 35% 65%, rgba(253, 224, 71, 0.2) 0%, transparent 40%);"></div>
 
         <div id="room-bg" class="absolute inset-0 z-0 overflow-hidden">
+            <div id="room-party-bg" class="absolute inset-0"></div>
             <!-- Window Diorama -->
             <svg id="window-svg" viewBox="0 0 100 150" class="absolute top-[8%] left-[2%] md:left-[8%] w-32 md:w-48 opacity-40 cursor-pointer pointer-events-auto transition-transform hover:scale-105 overflow-hidden">
                 <rect x="10" y="10" width="80" height="120" rx="4" fill="#e2e8f0" stroke="#64748B" stroke-width="2"/>
@@ -955,6 +967,7 @@
             await sleep(1500);
             
             document.querySelectorAll('.friend-pop').forEach(el => { el.classList.remove('scale-0', 'opacity-0'); el.classList.add('scale-100', 'opacity-100'); });
+            document.getElementById('room-party-bg').classList.add('show');
             
             setExpression('surprised');
             leftEye.style.transform = 'translate(-8px, -1px)'; rightEye.style.transform = 'translate(-8px, -1px)';
@@ -1012,7 +1025,10 @@
         async function handleAvatarInteraction() {
             if (!isPlaying || interactionStage < 0) return;
 
+            const roomBg = document.getElementById('room-bg');
+
             if (interactionStage === 0) { 
+                roomBg.style.background = "linear-gradient(to bottom, #fef3c7, #fde68a)";
                 document.getElementById('time-overlay').classList.remove('opacity-80');
                 document.getElementById('time-overlay').classList.add('opacity-0');
                 document.getElementById('win-moon').classList.add('translate-y-16', 'opacity-0');
@@ -1023,6 +1039,7 @@
             } else if (interactionStage === 1) { 
                 setExpression('normal'); showTooltip("oke udh melek wkw skrg tap buat liat kejutannya"); interactionStage = 2;
             } else if (interactionStage === 2) { 
+                roomBg.style.background = "linear-gradient(to bottom, #fce7f3, #fbcfe8)";
                 cakeGroup.style.transform = 'translateY(0px)'; cakeGroup.style.opacity = '1'; setExpression('surprised');
                 showTooltip("coba nyalain lilinnya dulu"); interactionStage = 3;
             } else if (interactionStage === 3) { 
@@ -1228,6 +1245,12 @@
             document.getElementById('time-overlay').classList.remove('opacity-0'); document.getElementById('time-overlay').classList.add('opacity-80');
             document.getElementById('win-moon').classList.remove('translate-y-16', 'opacity-0'); document.getElementById('win-sun').classList.add('translate-y-12', 'opacity-0'); document.getElementById('win-sun').classList.remove('translate-y-0', 'opacity-100');
             document.getElementById('lamp-light').classList.add('opacity-0'); document.getElementById('spotlight').classList.add('opacity-0');
+
+            const partyBg = document.getElementById('room-party-bg');
+            if (partyBg) {
+                partyBg.classList.remove('show');
+            }
+            document.getElementById('room-bg').style.background = "none";
 
             setExpression('sleeping'); hideTooltip();
             parallaxWrapper.style.transform = `translate(0px, 0px)`; leftEye.style.transform = `translate(0px, 0px)`; rightEye.style.transform = `translate(0px, 0px)`;
