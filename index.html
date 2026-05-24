@@ -347,9 +347,9 @@
         <!-- LIGHT PAINTING SVG -->
         <svg id="light-painting" viewBox="0 0 200 80" class="absolute top-[15%] left-1/2 -translate-x-1/2 w-48 sm:w-64 pointer-events-none z-40 hidden">
             <!-- Y E A Y ! -->
-            <path id="yeay-path" d="M 20 20 L 40 45 L 40 70 M 60 20 L 40 45 M 80 20 L 65 20 L 65 70 L 85 70 M 65 45 L 75 45 M 100 70 L 115 20 L 130 70 M 105 50 L 125 50 M 140 20 L 160 45 L 160 70 M 180 20 L 160 45 M 185 20 L 185 55 M 185 65 L 185 70" 
+            <!-- <path id="yeay-path" d="M 20 20 L 40 45 L 40 70 M 60 20 L 40 45 M 80 20 L 65 20 L 65 70 L 85 70 M 65 45 L 75 45 M 100 70 L 115 20 L 130 70 M 105 50 L 125 50 M 140 20 L 160 45 L 160 70 M 180 20 L 160 45 M 185 20 L 185 55 M 185 65 L 185 70" 
                   fill="none" stroke="#f472b6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" 
-                  style="stroke-dasharray: 600; stroke-dashoffset: 600; filter: drop-shadow(0 0 8px #f472b6);" />
+                  style="stroke-dasharray: 600; stroke-dashoffset: 600; filter: drop-shadow(0 0 8px #f472b6);" /> -->
         </svg>
 
         <canvas id="confetti-canvas"></canvas>
@@ -801,9 +801,9 @@
             
             // Draw YEAY
             const lp = document.getElementById('light-painting');
-            const yp = document.getElementById('yeay-path');
+            // const yp = document.getElementById('yeay-path');
             lp.classList.remove('hidden');
-            yp.classList.add('draw-yeay');
+            // yp.classList.add('draw-yeay');
 
             await sleep(1500);
             
@@ -818,7 +818,7 @@
             // Revert Dim & Hide Path
             document.getElementById('time-overlay').classList.remove('opacity-70');
             document.getElementById('time-overlay').classList.add('opacity-0');
-            yp.classList.remove('draw-yeay'); lp.classList.add('hidden');
+            // yp.classList.remove('draw-yeay'); lp.classList.add('hidden');
         });
 
 
@@ -853,45 +853,12 @@
             constructor() {
                 this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height - canvas.height; this.r = Math.random() * 2 + 5; this.dy = Math.random() * 1.5 + 2; this.color = ['#fca5a5', '#f9a8d4', '#c084fc', '#fef08a', '#93c5fd', '#6EE7B7'][Math.floor(Math.random() * 6)]; this.tiltAngle = Math.random() * Math.PI; this.tiltAngleInc = 0.03; this.sway = Math.random() * Math.PI * 2; this.shape = Math.random() > 0.5 ? 'circle' : 'rect';
             }
-            update() {
-    this.tiltAngle += this.tiltAngleInc;
-    this.sway += 0.02;
-    this.y += this.dy;
-
-    // 1. Gabungkan gerakan ayun (sway) dengan dorongan klik (dx)
-    this.x += (Math.sin(this.sway) * 1) + (this.dx || 0);
-
-    // 2. TAMBAHKAN INI: Friction/Gesekan 
-    // Ini membuat dorongan klik (dx) perlahan hilang, jadi gerakannya kembali ke ayunan normal
-    if (this.dx) {
-        this.dx *= 0.95; // Kecepatan horizontal berkurang sedikit demi sedikit
-        if (Math.abs(this.dx) < 0.1) this.dx = 0; // Hentikan kalau sudah sangat lambat
-    }
-
-    this.tilt = Math.sin(this.tiltAngle) * 8;
-    
-    // 3. Reset jika sudah sampai bawah
-    if (this.y > canvas.height) {
-        this.y = -10;
-        this.x = Math.random() * canvas.width;
-        this.dx = 0; // Pastikan dx reset ke 0 saat muncul kembali dari atas
-    }
-}
+            update() { this.tiltAngle += this.tiltAngleInc; this.sway += 0.02; this.y += this.dy; this.x += Math.sin(this.sway) * 1; this.tilt = Math.sin(this.tiltAngle) * 8; if (this.y > canvas.height) { this.y = -10; this.x = Math.random() * canvas.width; } }
             draw() { ctx.beginPath(); ctx.fillStyle = this.color; if(this.shape === 'circle') { ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false); ctx.fill(); } else { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.tiltAngle); ctx.fillRect(-this.r, -this.r/2, this.r*2, this.r); ctx.restore(); } }
         }
         function renderConfetti() { if(!confettiActive) return; ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(renderConfetti); }
         function startConfetti() { particles = Array.from({length: 170}, () => new Particle()); confettiActive = true; renderConfetti(); }
         function stopConfetti() { confettiActive = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
-        function summonConfettiAt(x, y) {
-            for(let i=0; i<15; i++) { // Saya naikkan jadi 15 agar lebih ramai
-                let p = new Particle();
-                p.x = x; 
-                p.y = y;
-                p.dy = (Math.random() - 0.5) * 10;
-                p.dx = (Math.random() - 0.5) * 10;
-                particles.push(p);
-            }
-        }
 
         async function typeWriter(text, element, speed = 100, sequenceId) {
             element.textContent = ""; for (let i = 0; i < text.length; i++) { if (currentSequence !== sequenceId) return; element.textContent += text.charAt(i); await sleep(speed); }
@@ -1332,22 +1299,6 @@
 
         introOverlay.addEventListener('click', startMovieSequence);
         document.getElementById('character-container').addEventListener('click', handleAvatarInteraction);
-
-        document.addEventListener('click', (e) => {
-            // Hanya aktif setelah lilin ditiup (Stage 5)
-            if(interactionStage >= 5) { 
-                summonConfettiAt(e.clientX, e.clientY);
-                if(!confettiActive) {
-                    confettiActive = true;
-                    renderConfetti();
-                    // Berhenti merender setelah 1.5 detik agar performa terjaga
-                    setTimeout(() => {
-                        confettiActive = false;
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    }, 20000); 
-                }
-            }
-        });
     </script>
 </body>
 </html>
