@@ -1072,7 +1072,7 @@
                 showTooltip("coba nyalain lilinnya dulu"); interactionStage = 3;
             } else if (interactionStage === 3) { 
                 setExpression('normal'); flame.classList.remove('opacity-0'); flame.classList.add('animate-flicker');
-                showTooltip("make a wish.. (tap lagi kalau udah)"); interactionStage = 4;
+                showTooltip("make a wish.."); interactionStage = 4;
 
                 // Spawn Party Spark
                 partySpark.classList.remove('hidden');
@@ -1083,7 +1083,7 @@
 
             } else if (interactionStage === 4) { 
                 setExpression('wishing'); 
-                showTooltip("ready? hembusin nafas halusss aja ke mic  (or tap kalau gabisa)");
+                showTooltip("ready? hembusin nafas halusss aja ke mic.. or just tap hehe");
                 interactionStage = 4.5;
                 setupMic();
             } else if (interactionStage === 4.5) { 
