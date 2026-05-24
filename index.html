@@ -1236,6 +1236,16 @@
             introOverlay.classList.remove('hide-overlay');
         }
 
+        function blink() {
+            const eyes = document.querySelectorAll('.eye');
+            eyes.forEach(eye => {
+                eye.style.opacity = '0';
+                setTimeout(() => eye.style.opacity = '1', 150);
+            });
+            setTimeout(blink, Math.random() * 3000 + 2000); // Kedip tiap 2-5 detik
+        }
+        blink();
+
         introOverlay.addEventListener('click', startMovieSequence);
         document.getElementById('character-container').addEventListener('click', handleAvatarInteraction);
     </script>
